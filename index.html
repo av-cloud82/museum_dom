@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louvre Museum</title>
+    
+    <link rel="preload" href="assets/fonts/Roboto/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto/Roboto-ExtraLight.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Forum/Forum-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <link rel="preload" href="assets/fonts/Forum/Forum-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto/Roboto-ExtraLight.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="49" height="26" viewBox="0 0 49 26" fill="none">
+                        <g clip-path="url(#clip0_1_1996)">
+                            <path d="M49 26H0L24.5 0L49 26ZM13.3075 13.1309L16.6442 16.6702L19.981 13.1309L16.6442 9.58115L13.3075 13.1309ZM16.6442 25.0052L19.981 21.466L16.6442 17.9162L13.3075 21.466L16.6442 25.0052ZM32.4083 25.0052L35.745 21.466L32.4083 17.9162L29.019 21.466L32.4083 25.0052ZM28.4673 5.40314C28.4473 5.43762 28.4207 5.46941 28.3885 5.49738C27.3507 6.6178 26.2997 7.73822 25.2357 8.84817C25.1437 8.94241 25.2357 9.00524 25.2357 9.08901L28.3097 12.356L28.4542 12.4921L31.7909 8.96335L28.4673 5.40314ZM8.78847 25.0052L8.91984 24.8691L11.9938 21.6126C12.0428 21.5717 12.0702 21.5173 12.0702 21.4607C12.0702 21.4042 12.0428 21.3498 11.9938 21.3089C11.0611 20.3456 10.1547 19.3613 9.23512 18.3874L8.78847 17.9162L5.45174 21.466L8.78847 25.0052ZM17.2354 8.95288L20.5721 12.4921L20.6772 12.3979L23.8169 9.06806C23.922 8.95288 23.8169 8.89005 23.8169 8.80628L20.7429 5.56021L20.6115 5.42408L17.2354 8.95288ZM17.2354 17.3298L20.5721 20.8691L20.7429 20.7016C21.7413 19.6545 22.7528 18.6073 23.7643 17.4869C23.7926 17.4663 23.8152 17.4412 23.8307 17.4133C23.8461 17.3853 23.8541 17.3551 23.8541 17.3246C23.8541 17.2941 23.8461 17.2639 23.8307 17.2359C23.8152 17.208 23.7926 17.1829 23.7643 17.1623C22.8185 16.1675 21.8727 15.1728 20.9399 14.1675L20.5721 13.7906L17.2354 17.3298ZM32.9995 17.3298L36.3362 20.8691L39.6729 17.3298L36.3362 13.7906L32.9995 17.3298ZM28.4673 13.7801V13.8534L25.3013 17.2147C25.1962 17.3089 25.2357 17.3717 25.3013 17.4555L28.244 20.5969C28.3228 20.6911 28.4147 20.7853 28.5198 20.8901L31.8566 17.3508L28.4673 13.7801ZM12.7295 20.8482C12.7453 20.8175 12.7675 20.7892 12.7952 20.7644L15.9611 17.4031C16.0531 17.2984 15.9611 17.2461 15.9611 17.1623L12.8477 13.8953C12.8069 13.8484 12.7583 13.8061 12.7032 13.7696L9.37962 17.2984L12.7295 20.8482ZM32.3558 16.6597L35.6925 13.1204L32.3558 9.59162L29.019 13.1309L32.3558 16.6597ZM24.4737 8.28272L27.8105 4.74346L24.5263 1.27749H24.4606L21.2552 4.71204C21.2354 4.73712 21.2249 4.76616 21.2249 4.79581C21.2249 4.82546 21.2354 4.8545 21.2552 4.87958L24.4737 8.28272ZM24.4737 16.6597L27.8105 13.1204L24.5 9.58115L21.1633 13.1309L24.4737 16.6597ZM24.4737 25.0366L27.8105 21.4974L24.4737 17.9476L21.1633 21.466L24.4737 25.0366ZM40.2378 25.0366L43.5745 21.4974L40.2509 17.9791H40.1853L36.9668 21.3613C36.8617 21.4764 36.9668 21.5288 36.9668 21.6021L39.5941 24.4398L40.2378 25.0366ZM1.89169 25.2356H7.88204L4.91314 22.0942L1.89169 25.2356ZM41.1705 25.2356H47.1083L44.1394 22.0942L41.1705 25.2356ZM23.5542 25.2356L20.5721 22.0942L17.5901 25.2356H23.5542ZM33.3147 25.2356H39.2525L36.2836 22.0942L33.3147 25.2356ZM31.3968 25.2356L28.4279 22.0942L25.459 25.2356H31.3968ZM15.6327 25.2356L12.6638 22.0942L9.69491 25.2356H15.6327Z" fill="white"/>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="49" height="26" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="logo-text">
+                        Louvre
+                    </div>
+                </div>
+            </div>
+            
+            <nav id="header-nav" class="header-nav">
+                <ul>
+                    <li><a href="#visiting">Visiting</a></li>
+                    <li><a href="#explore">Explore</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#tickets">Tickets</a></li>
+                    <li><a href="#contacts">Contacts</a></li>
+                </ul>
+            </nav>
+
+            <div id="mobile-menu-wrapper" class="mobile-menu-wrapper">
+                <nav class="mobile-menu">
+                    <ul>
+                        <li><a href="#visiting">Visiting</a></li>
+                        <li><a href="#explore">Explore</a></li>
+                        <li><a href="#video">Video</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#tickets">Tickets</a></li>
+                        <li><a href="#contacts">Contacts</a></li>
+                    </ul>
+                    
+                </nav>
+
+                <div class="mm-images">
+                    <img src="assets/mobile-img-1.jpg" alt="image">
+                    <img src="assets/mobile-img-2.jpg" alt="image">
+                    <img src="assets/mobile-img-3.jpg" alt="image">
+                </div>
+                <hr>
+                <div class="social">
+                    <ul>
+                        <li>
+                            <a href="https://www.youtube.com/">
+                                <div class="icon">
+                                    <div class="icon-mask yt"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/">
+                                <div class="icon">
+                                    <div class="icon-mask insta"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com">
+                                <div class="icon">
+                                    <div class="icon-mask fb"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/">
+                                <div class="icon">
+                                    <div class="icon-mask tw"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.pinterest.com/">
+                                <div class="icon">
+                                    <div class="icon-mask pt"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="menu-toggle" class="mobile-btn">
+                <img class="icon open" src="assets/icons/mobile-burger.svg" width="32" height="18" alt="mobile menu icon">
+                <img class="icon close" src="assets/icons/close.svg" width="25" height="25" alt="mobile menu icon">
+            </div>
+            
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome" id="welcome">
+            <div class="welcome-container">
+                <div class="hero-text-block">
+                    <h1>Louvre Museum</h1>
+                    <h2 class="hero-header text-hover">Welcome <br>to the louvre</h2>
+                    <p>From the castle to the museum</p>
+                    <button class="button-hover" aria-label="Virtual Tour" onclick="window.location.href='https://www.google.com/maps/@48.8618159,2.3366818,3a,75y,81.55h,73.4t/data=!3m7!1e1!3m5!1sAF1QipOVxZQuSy3Bx9T_HpH_7FtBHDTXvI6SF-A10ocT!2e10!3e12!7i5472!8i2736'">Discover the Louvre</button>
+                </div>
+                <div class="hero-image-block">
+                    <div id="slider" class="slider">
+                        <div class="carousel">
+                            <div id="item-container" class="item-container">
+                                <img class="item active" src="assets/slider/1.jpg" alt="Hero Image 1">
+                                <img class="item" src="assets/slider/2.jpg" alt="Hero Image 2">
+                                <img class="item" src="assets/slider/3.jpg" alt="Hero Image 3">
+                                <img class="item" src="assets/slider/4.jpg" alt="Hero Image 4">
+                                <img class="item" src="assets/slider/5.jpg" alt="Hero Image 5">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-image-nav">
+                        <p><span id="slider-index">01</span> | <span>05</span></p>
+                        <div class="slider-dot-wrapper">
+                            <i class="slider-dot active"></i>
+                            <i class="slider-dot"></i>
+                            <i class="slider-dot"></i>
+                            <i class="slider-dot"></i>
+                            <i class="slider-dot"></i>
+                        </div>
+                        <div class="arrows">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="8" viewBox="0 0 80 8" fill="none">
+                                <path d="M74.2775 1.97284e-06C76.0983 1.68661 78.0058 2.91738 80 3.69231L80 4.30769C78.0058 5.10541 76.0983 6.33618 74.2775 8L72.7601 8C73.6272 6.5641 74.4653 5.47009 75.2746 4.71795L50 4.71795L50 3.28205L75.2746 3.28205C74.4653 2.52992 73.6272 1.4359 72.7601 1.86378e-06L74.2775 1.97284e-06Z" fill="white"/>
+                                <path d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z" fill="white"/>
+                            </svg>
+                            <div class="control arrow left"></div>
+                            <div class="control arrow right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="visiting" id="visiting">
+            <div class="container visiting-container">
+                <h2>
+                    Virtual tour
+                </h2>
+                <hr>
+                <div class="v-cards">
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card_01.webp" alt="Royal Palace">
+                        </div>
+                        <h3>Royal palace</h3>
+                        <hr>
+                        <p>360&deg; Virtual Tour</p>
+                        <p>Google Street Panorama View</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card_02.webp" alt="Denon Wing">
+                        </div>
+                        <h3>Denon Wing</h3>
+                        <hr>
+                        <p>360&deg; Virtual Tour</p>
+                        <p>Google Street Panorama View</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card_03.webp" alt="Colonnade Perrault">
+                        </div>
+                        <h3>Colonnade Perrault</h3>
+                        <hr>
+                        <p>360&deg; Virtual Tour</p>
+                        <p>Google Street Panorama View</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card_04.webp" alt="Greek hall">
+                        </div>
+                        <h3>Greek hall</h3>
+                        <hr>
+                        <p>360&deg; Virtual Tour</p>
+                        <p>Google Street Panorama View</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card_05.webp" alt="Mona Lisa">
+                        </div>
+                        <h3>Mona Lisa</h3>
+                        <hr>
+                        <p>360&deg; Virtual Tour</p>
+                        <p>Google Street Panorama View</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card_06.webp" alt="Night Palace">
+                        </div>
+                        <h3>Night Palace</h3>
+                        <hr>
+                        <p>360&deg; Virtual Tour</p>
+                        <p>Google Street Panorama View</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="explore" id="explore">
+            <div class="container explore-container">
+                <div class="text-block">
+                    <h2 class="text-hover">Picture explore</h2>
+                    <hr>
+                    <p>Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
+                    <p>It was cleaned in 1984 to remove a <span>"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
+                    <p>The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
+                </div>
+                <div class="image-block">
+                    <div class="before-after">
+                        <img src="assets/after.webp" loading="lazy" alt="After" class="after">
+                        <div class="before-wrapper"></div>
+                        <svg class="handler" xmlns="http://www.w3.org/2000/svg" width="39" height="700" viewBox="0 0 39 700" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 365C27.5081 365 34 358.508 34 350.5C34 342.492 27.5081 336 19.5 336C11.4919 336 5 342.492 5 350.5C5 358.508 11.4919 365 19.5 365ZM19.5 370C30.2696 370 39 361.27 39 350.5C39 339.73 30.2696 331 19.5 331C8.73045 331 0 339.73 0 350.5C0 361.27 8.73045 370 19.5 370Z" fill="white"/>
+                            <path d="M17 0H22V332H17V0Z" fill="white"/>
+                            <path d="M17 368H22V700H17V368Z" fill="white"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="video" id="video">
+            <div class="container v-container">
+                
+                <div class="text-block">
+                    <h2>Video journey</h2>
+                    <p>Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
+                </div>
+
+                <div class="video-block">
+
+                    <div class="video-player">
+                        <video id="v-frame" class="video-frame" preload="metadata" src="assets/video/v001.mp4" poster="assets/video/v001-cover.webp"></video>
+                        <img src="assets/icons/play-sign.svg" alt="Play">
+                        <div id="video-controls">
+                            <button id="play-pause" class="play player-btn" aria-label="Play Button"></button>
+                            <input type="range" id="playback" value="0" step="0.1" aria-label="Scroll">
+                            <button id="volume-btn" class="player-btn" aria-label="Volume button"></button>
+                            <input type="range" id="volume" min="0" max="1" step="0.01" aria-label="Volume range">
+                            <button id="fullscreen" class="player-btn" aria-label="fullscreen button"></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="video-row">
+                    <lite-youtube class="youtube-embed" videoid="aWmJ5DgyWPI"></lite-youtube>
+                    <lite-youtube class="youtube-embed" videoid="Vi5D6FKhRmo"></lite-youtube>
+                    <lite-youtube class="youtube-embed" videoid="NOhDysLnTvY"></lite-youtube>
+
+                </div>
+
+                <div class="video-dots">
+                    <span>&laquo;</span>
+                        <div class="circles">
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                        </div>
+                    <span>&raquo;</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery black-bg" id="gallery">
+            <div class="container v-container">
+                <h2 class="text-hover">Art Gallery</h2>
+                <div>
+                    <div class="g-cards">
+                        <div>
+                            <img src="assets/gallery/galery2.webp" alt="picture 2">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery9.webp" alt="picture 9">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery4.webp" alt="picture 4">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery6.webp" alt="picture 6">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery1.webp" alt="picture 1">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery8.webp" alt="picture 8">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery3.webp" alt="picture 3">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery5.webp" alt="picture 5">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery7.webp" alt="picture 7">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery10.webp" alt="picture 10">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery15.webp" alt="picture 15">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery12.webp" alt="picture 12">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery11.webp" alt="picture 11">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery13.webp" alt="picture 13">
+                        </div>
+                        <div>
+                            <img src="assets/gallery/galery14.webp" alt="picture 14">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="shaddow"></div>
+            </div>
+        </section>
+
+        <section class="tickets" id="tickets">
+            <div class="container v-container">
+                <h2>Buy tickets</h2>
+                <hr>
+                <div>
+                    <div class="img-block">
+                        <img src="assets/tickets_img.webp" alt="Tickets image">
+                    </div>
+                    <div class="form-block">
+                        <div class="radio-input">
+                            <h4>Ticket Type</h4>
+                            <label class="radio-container">
+                                <input type="radio" name="tickets" checked="checked" aria-label="Selection"> Permanent exhibition
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container">
+                                <input type="radio" name="tickets" aria-label="Selection"> Temporary exhibition
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container">
+                                <input type="radio" name="tickets" aria-label="Selection"> Combined Admission
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="number-input">
+                            <h4>Amount</h4>
+                            <div>
+                                <label>Basic 18+</label>
+                                <span>
+                                    <button class="value-control" onclick="adultsInput.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                    <input class="value-input" id="adultsInput" type="number" value="1" min="0" max="10" step="1" aria-label="Selection">
+                                    <button class="value-control" onclick="adultsInput.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                </span>
+                            </div>
+                            <div>
+                                <label>Senior 65+</label>
+                                <span>
+                                    <button class="value-control" onclick="seniors.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                    <input class="value-input" type="number" id="seniors" value="1" min="0" max="10" step="1" aria-label="Selection">
+                                    <button class="value-control" onclick="seniors.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                </span>
+                            </div>
+                            
+                            <label class="total">Total €<span class="total-value">220</span></label>
+                            <button class="button-hover" aria-label="Tickets buy button">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="paralax"></div>
+
+        <section class="contacts" id="contacts">
+            <div class="container v-container">
+                <h2>Contacts</h2>
+                <hr>
+                <div>
+                    <div class="text-block">
+                        <h4>
+                            <span>Palais Royal</span>
+                             <span>Musee du Louvre</span>
+                        </h4>
+                        <p>address: 75001 Paris, France</p>
+                        <p>phone: <a href="tel:+330140205050">+33(0) 1 40 20 50 50</a></p>
+                        <p>mail: <a href="mailto:info@louvre.fr">info@louvre.fr</a></p>
+                    </div>
+                    <div class="map-block">
+                        <img src="assets/map.webp" alt="Map">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container h-container">
+            <div class="footer-logo">
+
+                <div class="logo-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="49" height="26" viewBox="0 0 49 26" fill="none">
+                        <g clip-path="url(#clip0_1_1996)">
+                            <path d="M49 26H0L24.5 0L49 26ZM13.3075 13.1309L16.6442 16.6702L19.981 13.1309L16.6442 9.58115L13.3075 13.1309ZM16.6442 25.0052L19.981 21.466L16.6442 17.9162L13.3075 21.466L16.6442 25.0052ZM32.4083 25.0052L35.745 21.466L32.4083 17.9162L29.019 21.466L32.4083 25.0052ZM28.4673 5.40314C28.4473 5.43762 28.4207 5.46941 28.3885 5.49738C27.3507 6.6178 26.2997 7.73822 25.2357 8.84817C25.1437 8.94241 25.2357 9.00524 25.2357 9.08901L28.3097 12.356L28.4542 12.4921L31.7909 8.96335L28.4673 5.40314ZM8.78847 25.0052L8.91984 24.8691L11.9938 21.6126C12.0428 21.5717 12.0702 21.5173 12.0702 21.4607C12.0702 21.4042 12.0428 21.3498 11.9938 21.3089C11.0611 20.3456 10.1547 19.3613 9.23512 18.3874L8.78847 17.9162L5.45174 21.466L8.78847 25.0052ZM17.2354 8.95288L20.5721 12.4921L20.6772 12.3979L23.8169 9.06806C23.922 8.95288 23.8169 8.89005 23.8169 8.80628L20.7429 5.56021L20.6115 5.42408L17.2354 8.95288ZM17.2354 17.3298L20.5721 20.8691L20.7429 20.7016C21.7413 19.6545 22.7528 18.6073 23.7643 17.4869C23.7926 17.4663 23.8152 17.4412 23.8307 17.4133C23.8461 17.3853 23.8541 17.3551 23.8541 17.3246C23.8541 17.2941 23.8461 17.2639 23.8307 17.2359C23.8152 17.208 23.7926 17.1829 23.7643 17.1623C22.8185 16.1675 21.8727 15.1728 20.9399 14.1675L20.5721 13.7906L17.2354 17.3298ZM32.9995 17.3298L36.3362 20.8691L39.6729 17.3298L36.3362 13.7906L32.9995 17.3298ZM28.4673 13.7801V13.8534L25.3013 17.2147C25.1962 17.3089 25.2357 17.3717 25.3013 17.4555L28.244 20.5969C28.3228 20.6911 28.4147 20.7853 28.5198 20.8901L31.8566 17.3508L28.4673 13.7801ZM12.7295 20.8482C12.7453 20.8175 12.7675 20.7892 12.7952 20.7644L15.9611 17.4031C16.0531 17.2984 15.9611 17.2461 15.9611 17.1623L12.8477 13.8953C12.8069 13.8484 12.7583 13.8061 12.7032 13.7696L9.37962 17.2984L12.7295 20.8482ZM32.3558 16.6597L35.6925 13.1204L32.3558 9.59162L29.019 13.1309L32.3558 16.6597ZM24.4737 8.28272L27.8105 4.74346L24.5263 1.27749H24.4606L21.2552 4.71204C21.2354 4.73712 21.2249 4.76616 21.2249 4.79581C21.2249 4.82546 21.2354 4.8545 21.2552 4.87958L24.4737 8.28272ZM24.4737 16.6597L27.8105 13.1204L24.5 9.58115L21.1633 13.1309L24.4737 16.6597ZM24.4737 25.0366L27.8105 21.4974L24.4737 17.9476L21.1633 21.466L24.4737 25.0366ZM40.2378 25.0366L43.5745 21.4974L40.2509 17.9791H40.1853L36.9668 21.3613C36.8617 21.4764 36.9668 21.5288 36.9668 21.6021L39.5941 24.4398L40.2378 25.0366ZM1.89169 25.2356H7.88204L4.91314 22.0942L1.89169 25.2356ZM41.1705 25.2356H47.1083L44.1394 22.0942L41.1705 25.2356ZM23.5542 25.2356L20.5721 22.0942L17.5901 25.2356H23.5542ZM33.3147 25.2356H39.2525L36.2836 22.0942L33.3147 25.2356ZM31.3968 25.2356L28.4279 22.0942L25.459 25.2356H31.3968ZM15.6327 25.2356L12.6638 22.0942L9.69491 25.2356H15.6327Z" fill="white"/>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <rect width="49" height="26" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="logo-text">
+                        Louvre
+                    </div>
+                </div>
+                
+            </div>
+            <div class="footer-right">
+                <nav class="footer-menu">
+                    <ul>
+                        <li><a href="#visiting">Visiting</a></li>
+                        <li><a href="#explore">Explore</a></li>
+                        <li><a href="#video">Video</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#tickets">Tickets</a></li>
+                        <li><a href="#contacts">Contacts</a></li>
+                    </ul>
+                </nav>
+                <div class="social">
+                    <ul>
+                        <li>
+                            <a href="https://www.youtube.com/">
+                                <div class="icon">
+                                    <div class="icon-mask yt"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/">
+                                <div class="icon">
+                                    <div class="icon-mask insta"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com">
+                                <div class="icon">
+                                    <div class="icon-mask fb"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/">
+                                <div class="icon">
+                                    <div class="icon-mask tw"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.pinterest.com/">
+                                <div class="icon">
+                                    <div class="icon-mask pt"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <hr>
+        <div class="copyright">
+            <p>© 2025</p>
+            <p>The Rolling Scopes School</p>
+            <p>Username</p>
+        </div>
+    </footer>
+
+    <script rel="preconnect" src="app.js"></script>
+</body>
+</html>

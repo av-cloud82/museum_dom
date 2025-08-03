@@ -204,7 +204,7 @@ const swipedetect = (el) => {
 	let startTime = 0;
 	let elapsedTime = 0;
 
-	let threshold = 130;
+	let threshold = 100;
 	let restraint = 100;
 	let allowedTime = 500;
 

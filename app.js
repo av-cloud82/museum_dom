@@ -1,97 +1,54 @@
-const playback = document.querySelector("#playback");
-const volume = document.querySelector("#volume");
-const video = document.querySelector("#v-frame");
-const playPauseBtn = document.querySelector("#play-pause");
-const playSign = document.querySelector(".video .video-player img");
-const videoControls = document.querySelector("#video-controls");
-const fullScreen = document.querySelector("#fullscreen");
+// const volume = document.querySelector("#volume");
+// const video = document.querySelector("#v-frame");
+// const playPauseBtn = document.querySelector("#play-pause");
+// const playSign = document.querySelector(".video .video-player img");
+// const videoControls = document.querySelector("#video-controls");
+// const fullScreen = document.querySelector("#fullscreen");
 
-function updateGradient(slider) {
-    const min = 0;
-    const max = parseFloat(slider.max);
-    const val = parseFloat(slider.value);
-    const percentage = ((val - min) / (max - min)) * 100;
-    slider.style.backgroundImage = `linear-gradient(90deg, #710707 ${percentage}%, transparent ${percentage}%)`; 
-};
+// function updateGradient(slider) {
+//     const min = 0;
+//     const max = parseFloat(slider.max);
+//     const val = parseFloat(slider.value);
+//     const percentage = ((val - min) / (max - min)) * 100;
+//     slider.style.backgroundImage = `linear-gradient(90deg, #710707 ${percentage}%, transparent ${percentage}%)`; 
+// };
 
-let playedOnce;
-function playPause(){
-    if(!playedOnce){
-        video.currentTime = 0.1;
-        playback.setAttribute("max", `${video.duration}`);
-        playedOnce = true;
-    };
+// let playedOnce;
+// function playPause(){
+//     if(!playedOnce){
+//         video.currentTime = 0.1;
+//         playback.setAttribute("max", `${video.duration}`);
+//         playedOnce = true;
+//     };
     
-    if(playPauseBtn.classList.contains("play")){
-        playPauseBtn.classList.remove("play");
-        playPauseBtn.classList.add("pause");
-        playSign.classList.remove("img");
-        video.play();
-    } else {
-        playPauseBtn.classList.remove("pause");
-        playPauseBtn.classList.add("play");
-        playSign.classList.add("img");
-        video.pause();
-    };
-};
-
-function checkVideoMeta(){
-    if(video.duration > 0){
-        videoControls.classList.add("show");
-        playSign.classList.add("img");
-        volume.value = video.volume;
-        updateGradient(playback);
-        updateGradient(volume);
-    } else {
-        console.log("⚠️ video.duration ещё не готов, повтор через 500мс...")
-        setTimeout(checkVideoMeta, 500);
-    };
-};
+//     if(playPauseBtn.classList.contains("play")){
+//         playPauseBtn.classList.remove("play");
+//         playPauseBtn.classList.add("pause");
+//         playSign.classList.remove("img");
+//         video.play();
+//     } else {
+//         playPauseBtn.classList.remove("pause");
+//         playPauseBtn.classList.add("play");
+//         playSign.classList.add("img");
+//         video.pause();
+//     };
+// };
 
 
-// function toggleMenu(){
-//     pass
-// }
+// volume.addEventListener("input", function(e){
+//     updateGradient(e.target);
+//     video.volume = e.target.value;
+// });
 
 
 
 
+// fullScreen.addEventListener("click", function(e){
+//     video.requestFullscreen();
+// })
 
 
-// EVENT LISTENERS
-
-document.addEventListener("DOMContentLoaded", function(){
-    checkVideoMeta();
-});
-
-volume.addEventListener("input", function(e){
-    updateGradient(e.target);
-    video.volume = e.target.value;
-});
-
-video.addEventListener("timeupdate", () => {
-    playback.value = video.currentTime;
-    updateGradient(playback);
-});
-
-playback.addEventListener("input", function(e){
-    playback.value = e.target.value;
-    video.currentTime = e.target.value;
-});
-
-const clickElements = [playPauseBtn, video, playSign];
-clickElements.forEach(function(element){
-    element.addEventListener("click", function(e){
-        if(videoControls.classList.contains("show")){
-            playPause();
-        };
-    })
-});
-
-fullScreen.addEventListener("click", function(e){
-    video.requestFullscreen();
-})
-
+// Mobile Menu
 const menuToggle = document.querySelector("#menu-toggle");
 const mobileMenu = document.querySelector("#mobile-menu-wrapper");
 const overlay = document.querySelector("#menu-overlay");
@@ -196,19 +153,19 @@ navDots.forEach(function(dot, index){
 
 const swipedetect = (el) => {
   
-	let surface = el;
-	let startX = 0;
-	let startY = 0;
-	let distX = 0;
-	let distY = 0;
-	let startTime = 0;
-	let elapsedTime = 0;
+	let surface = el,
+	    startX = 0,
+        startY = 0,
+        distX = 0,
+        distY = 0,
+        startTime = 0,
+        elapsedTime = 0;
 
-	let threshold = 10;
-	let restraint = 100;
-	let allowedTime = 1000;
-
-
+	let threshold = 10,
+        restraint = 100,
+        allowedTime = 1000,
+        isHorizontalSwipe = false;
+    
 	surface.addEventListener('mousedown', function(e){
 		startX = e.pageX;
 		startY = e.pageY;
@@ -255,13 +212,22 @@ const swipedetect = (el) => {
         startX = touchobj.pageX;
         startY = touchobj.pageY;
         startTime = new Date().getTime();
-        e.preventDefault();
+        isHorizontalSwipe = false;
+        // e.preventDefault();
         
 	}, false);
 
 
 	surface.addEventListener('touchmove', function(e){
-		e.preventDefault();
+		const touch = e.changedTouches[0];
+        const deltaX = touch.pageX - startX;
+        const deltaY = touch.pageY - startY;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            isHorizontalSwipe = true;
+            e.preventDefault();
+        }
+        // e.preventDefault();
 	}, false);
 
 
@@ -270,6 +236,8 @@ const swipedetect = (el) => {
         distX = touchobj.pageX - startX;
         distY = touchobj.pageY - startY;
         elapsedTime = new Date().getTime() - startTime;
+
+        if (!isHorizontalSwipe) return;
 
         if (elapsedTime <= allowedTime){
             if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){
@@ -284,7 +252,7 @@ const swipedetect = (el) => {
                 }
             }
         }
-        e.preventDefault();
+        // e.preventDefault();
 	}, false);
 }
 

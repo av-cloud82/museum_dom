@@ -16,6 +16,7 @@
     <link rel="preload" href="assets/fonts/Roboto/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
 
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="preload" href="css/swiper-bundle.min.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
     <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
 </head>
@@ -281,24 +282,22 @@
                 </div>
 
                 <div class="video-row">
-
-                    <lite-youtube class="youtube-embed" videoid="aWmJ5DgyWPI"></lite-youtube>
-                    <lite-youtube class="youtube-embed" videoid="Vi5D6FKhRmo"></lite-youtube>
-                    <lite-youtube class="youtube-embed" videoid="NOhDysLnTvY"></lite-youtube>
-
-                </div>
-
-                <div class="video-dots">
-                    <span>&laquo;</span>
-                        <div class="circles">
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <lite-youtube class="youtube-embed swiper-slide" videoid="aWmJ5DgyWPI"></lite-youtube>
+                            <lite-youtube class="youtube-embed swiper-slide" videoid="Vi5D6FKhRmo"></lite-youtube>
+                            <lite-youtube class="youtube-embed swiper-slide" videoid="NOhDysLnTvY"></lite-youtube>
+                            <lite-youtube class="youtube-embed swiper-slide" videoid="NOhDysLnTvY"></lite-youtube>
+                            <lite-youtube class="youtube-embed swiper-slide" videoid="NOhDysLnTvY"></lite-youtube>
                         </div>
-                    <span>&raquo;</span>
+                        <div class="swiper-controls">
+                            <a id="prev" class="swiper-control swiper-button-prev"></a>
+                            <div class="swiper-pagination"></div>
+                            <a id="next" class="swiper-control swiper-button-next"></a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
@@ -516,7 +515,7 @@
         </div>
     </footer>
 
-
+    <script rel="preconnect" src="js/swiper-bundle.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="js_video.js"></script>
     <script rel="preconnect" src="app.js"></script>

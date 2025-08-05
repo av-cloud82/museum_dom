@@ -37,6 +37,11 @@
 
 /* STANDARD SETTINGS RESET */
 /* Box sizing rules */
+
+:root {
+    --swiper-theme-color: #999999;
+}
+
 *,
 *::before,
 *::after {
@@ -731,6 +736,10 @@ section {
     row-gap: 0;
 }
 
+.video .v-container{
+    padding-bottom: 70px;
+}
+
 .video .text-block {
     display: flex;
     flex-direction: row;
@@ -764,10 +773,6 @@ section {
     margin-top: 76px;
     position: relative;
 }
-
-/* .video .video-block:fullscreen {
-    border: 5px solid red !important;
-} */
 
 .video .video-player {
     width: 100%;
@@ -848,29 +853,12 @@ section {
     z-index: 10;
 }
 
-.video .video-block:fullscreen #video-controls,
-.video .video-block:-webkit-full-screen #video-controls,
-.video .video-block:-moz-full-screen #video-controls {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 85px;
-    background: #000;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-}
-
 .video .player-btn {
     background-color: #000;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 31px;
-    width: 23px;
+    height: 26px;
+    width: 22px;
     border: 0;
     outline: 0;
     cursor: pointer;
@@ -886,8 +874,8 @@ section {
 
 .video #volume-btn {
     background-image: url("assets/icons/volume.svg");
-    height: 31px;
-    width: 38px;
+    height: 26px;
+    width: 42px;
 }
 
 .video #volume-btn.muted {
@@ -896,7 +884,7 @@ section {
 
 .video #fullscreen {
     background-image: url("assets/icons/fullscreen-btn.svg");
-    height: 35px;
+    height: 28px;
     width: 35px;
 }
 
@@ -978,41 +966,72 @@ section {
 }
 
 .video .v-container .video-row {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
     margin-top: 39px;
-    column-gap: 40px;
     width: 100%;
 }
 
-.video .video-dots {
-    margin-top: 28px;
+.video .swiper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.video .swiper-pagination {
+    position: relative;
+}
+
+.video .swiper-controls {
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: center;
-    gap: 19px;
-    line-height: 1;
+    gap: 10px;
 }
 
-.video .circles {
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    content: "";
+}
+
+.video .swiper-pagination {
+    top: 0;
+    bottom: 0;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     align-items: center;
-    column-gap: 20px;
-    padding-top: 5px;
+    column-gap: 12px;
 }
 
-.video .circle {
+.video .swiper-controls {
+    margin-top: 35px;
+}
+
+.video .swiper-control {
+    position: relative;
+    height: 15px;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.video .swiper-button-prev {
+    background-image: url("assets/icons/angles-left.svg");
+}
+
+.video .swiper-button-next {
+    background-image: url("assets/icons/angles-right.svg");
+}
+
+.video .swiper-pagination-bullet {
     height: 12px;
     width: 12px;
-    background-color: #999999;
-    border-radius: 50%;
 }
 
-.video .video-dots span {
-    font-size: 24px;
-    color: #999999;
+.video .swiper-pagination-bullet-active {
+    background: #333333;
 }
 
 
@@ -1704,10 +1723,6 @@ footer .copyright p:nth-last-of-type(2) {
         height: 20px;
     }
 
-    .video .video-dots {
-        max-height: 12px;
-    }
-
 }
 
 @media screen and (max-width: 1300px){
@@ -2002,10 +2017,6 @@ footer .copyright p:nth-last-of-type(2) {
 
     .video .v-container .video-row {
         margin-top: 37px;
-    }
-
-    .video .video-dots {
-        max-height: 12px;
     }
 
 
@@ -2394,23 +2405,6 @@ footer .copyright p:nth-last-of-type(2) {
         width: 80px;
     }
 
-    .video .circles {
-        column-gap: 20px;
-    }
-
-    .video .circle {
-        height: 10px;
-        width: 10px;
-    }
-
-    .video .video-dots {
-        margin-top: 12px;
-        margin-bottom: 8px;
-    }
-
-    .video .video-dots svg {
-        height: 11px;
-    }
 
     .gallery .g-cards {
         margin-top: 40px;
@@ -2722,13 +2716,6 @@ footer .copyright p:nth-last-of-type(2) {
         margin-top: 40px;
     }
 
-    .video .video-dots {
-        margin-top: 40px;
-    }
-
-    .video .video-dots svg {
-        height: 8px;
-    }
 
     .tickets img {
         max-height: 160px;
@@ -2837,18 +2824,6 @@ footer .copyright p:nth-last-of-type(2) {
         height: 19px;
     }
 
-    .video .video-dots span {
-        font-size: 19px;
-    }
-
-    .video .circle {
-        height: 8px;
-        width: 8px;
-    }
-
-    .video .video-dots {
-        margin-top: 30px;
-    }
 
     section.video .v-container {
         padding-bottom: 35px;

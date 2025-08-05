@@ -1,7 +1,8 @@
 let player;
 let duration = 0;
 let lastVolume = 100;
-let seekBar, volumeSlider;
+let seekBar,
+    volumeSlider;
 
 function onYouTubeIframeAPIReady() {
   player = new YT.Player("ytplayer", {
@@ -42,6 +43,10 @@ function onPlayerReady(){
   document
     .getElementById("play-sign")
     .addEventListener("click", togglePlayPause);
+
+  document
+    .querySelector(".video-cover")
+    .addEventListener("click", togglePlayPause);
   
   document
     .getElementById("volume-btn")
@@ -64,16 +69,15 @@ function onPlayerReady(){
     if (e.key === "f") toggleFullscreen();
   })
 
-  setInterval(updateProgress, 1000);
+  setInterval(updateProgress, 100);
 }
 
 function togglePlayPause(){
   const state = player.getPlayerState();
-  const overlay = document.getElementById("play-sign"),
-        cover = document.querySelector(".video-cover");
+  const overlay = document.getElementById("play-sign");
   const btn = document.getElementById("play-pause");
 
-  if (state === YT.PlayerState.PLAYING) {
+  if (state === YT.PlayerState.PLAYING || seekBar.value === "100") {
     player.pauseVideo();
     overlay.style.opacity = ".7";
     btn.classList.remove("pause");
@@ -117,6 +121,11 @@ function handleVolume(e){
 
 function handleSeek(e){
   player.seekTo((e.target.value / 100) * duration, true);
+
+  if (e.target.value === "100") {
+    togglePlayPause();
+  }
+
   updateSliderFill(seekBar)
 }
 
@@ -142,11 +151,7 @@ function updateProgress(){
 }
 
 function updateSliderFill(slider) {
-  console.log("value:", slider.value);
-  console.log("min:", slider.min);
-  console.log("max:", slider.max);
   const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-  console.log(percentage)
   slider.style.background = `linear-gradient(to right, #710707 ${percentage}%, rgba(196, 196, 196, 1) ${percentage}%)`
 }
 
@@ -163,6 +168,11 @@ function onPlayerStateChange(event) {
     playPauseBtn.classList.remove("pause");
     overlayPlay.style.opacity = ".7";
   }
+
+  if (event.data === YT.PlayerState.CUED) {
+    duration = player.getDuration();
+    console.log(duration)
+  }
 }
 
 function formatTime(seconds) {
@@ -172,3 +182,33 @@ function formatTime(seconds) {
     .padStart(2, "0");
   return `${m}:${s}`;
 }
+
+
+
+// Here we add slider functionality to video block
+const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'horizontal',
+  slidesPerView: 2,
+  spaceBetween: 40,
+  loop: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  breakpoints: {
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    }
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});

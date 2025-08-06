@@ -67,11 +67,28 @@ function onPlayerReady(){
 
   // Keyboard shortcuts
   document.addEventListener("keydown", function(e){
-    if (e.key === " ") togglePlayPause;
-    if (e.key === "ArrowRight") player.seekTo(player.getCurrentTime() + 5, true);
-    if (e.key === "ArrowLeft") player.seekTo(player.getCurrentTime() - 5, true);
-    if (e.key === "m") toggleMute.call(document.getElementById("volume-btn"));
-    if (e.key === "f") toggleFullscreen();
+    if (e.code === "Space") {
+      e.preventDefault();
+      togglePlayPause();
+    }
+    if (e.code === "ArrowRight") player.seekTo(player.getCurrentTime() + 5, true);
+    if (e.code === "ArrowLeft") player.seekTo(player.getCurrentTime() - 5, true);
+    if (e.code === "keyM") toggleMute.call(document.getElementById("volume-btn"));
+    if (e.code === "keyF") toggleFullscreen();
+
+
+    let shiftKey = e.shiftKey,
+        secondKey = e.code,
+        currentPlaybackSpeed = player.getPlaybackRate();
+    
+    if (shiftKey && secondKey === 'Comma') {
+      player.setPlaybackRate(currentPlaybackSpeed -= 0.25);
+      showCurrentPlaybackSpeed();
+    } else if (shiftKey && secondKey === 'Period') {
+      player.setPlaybackRate(currentPlaybackSpeed += 0.25);
+      showCurrentPlaybackSpeed();
+    }
+
   })
 
   setInterval(updateProgress, 100);
@@ -187,6 +204,24 @@ function formatTime(seconds) {
   return `${m}:${s}`;
 }
 
+let hideTimeoutId = null;
+function showCurrentPlaybackSpeed() {
+  const speedObj = document.querySelector("#speed-card");
+  const speedTxt = speedObj.querySelector("span");
+
+  speedTxt.innerText = `${player.getPlaybackRate()}`;
+  speedObj.classList.add("show");
+
+  if (hideTimeoutId) {
+    clearTimeout(hideTimeoutId);
+  }
+
+  hideTimeoutId = setTimeout(function(){
+    speedObj.classList.remove("show");
+    hideTimeoutId = null;
+  }, 1500)
+
+}
 
 // ********************************************************
 // Here we add slider functionality to video block

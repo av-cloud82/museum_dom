@@ -242,14 +242,12 @@
                 </div>
                 <div class="image-block">
                     <div class="before-after">
-                        <img src="assets/after.webp" loading="lazy" alt="After" class="after">
-                        <div class="before-wrapper"></div>
-                        <svg class="handler" xmlns="http://www.w3.org/2000/svg" width="39" height="700" viewBox="0 0 39 700" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 365C27.5081 365 34 358.508 34 350.5C34 342.492 27.5081 336 19.5 336C11.4919 336 5 342.492 5 350.5C5 358.508 11.4919 365 19.5 365ZM19.5 370C30.2696 370 39 361.27 39 350.5C39 339.73 30.2696 331 19.5 331C8.73045 331 0 339.73 0 350.5C0 361.27 8.73045 370 19.5 370Z" fill="white"/>
-                            <path d="M17 0H22V332H17V0Z" fill="white"/>
-                            <path d="M17 368H22V700H17V368Z" fill="white"/>
-                        </svg>
+                        <img src="assets/after.webp" loading="lazy" alt="After" class="after slider-image image-before">
+                        <img src="assets/before.webp" loading="lazy" alt="After" class="after slider-image">
                     </div>
+                    <input class="ba-slider" type="range" min="0" max="100" value="50">
+                    <div class="slider-line"></div>
+                    <div class="slider-button"></div>
                 </div>
             </div>
         </section>
@@ -268,6 +266,7 @@
                         <div class="video-cover">
                             <img id="cover-image" src="assets/video/poster0.jpg" alt="Видео">
                             <div id="play-sign" class="play-sign"></div>
+                            <div id="speed-card">Current Speed: <span id="v-speed"></span></div>
                         </div>
                         <div id="ytplayer"></div>
                     </div>
@@ -577,6 +576,7 @@
 
     <script rel="preconnect" src="js/swiper-bundle.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js_explore.js"></script>
     <script src="js_video.js"></script>
     <script rel="preconnect" src="app.js"></script>
 </body>

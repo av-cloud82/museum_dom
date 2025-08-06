@@ -681,47 +681,85 @@ section {
 }
 
 .explore-container .image-block {
+    display: grid;
+    place-content: center;
+    position: relative;
+    --position: 50%;
+    overflow: hidden;
+    /* Positioning on page */
     width: 100%;
     height: 100%;
     max-width: 720px;
     max-height: 700px;
     margin-top: 15px;
 }
-.explore-container .before-after img {
-    width: 100%;
-    aspect-ratio: 1.028;
-}
 
 .explore-container .before-after {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .before-after img {
+    display: block;
+    max-width: 100%;
+}
+
+.explore-container .slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+}
+
+.explore-container .image-before {
+    position: absolute;
+    inset: 0;
+    width: var(--position);
+}
+
+.explore-container .ba-slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    opacity: 0;
+    /* For Firefox only */
     width: 100%;
     height: 100%;
 }
 
-.explore-container .before-wrapper {
-    background: url("assets/before.webp") no-repeat top left;
-    background-size: cover;
+.explore-container .slider-line {
+    --slider-size: 40px;
     position: absolute;
-    top: 0;
-    left: 0;    
-    width: 60%;
-    height: 100%;
-    overflow: hidden;
+    width: var(--slider-size);
+    height: var(--slider-size);
+    border: solid 4px #FFF;
+    border-radius: 50%;
+    top: 50%;
+    left: var(--position);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: 350px;
+        background: #FFF;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &::before {
+        bottom: calc(var(--slider-size) - 8px);
+        right: 10px;
+    }
+
+    &::after {
+        top: calc(var(--slider-size) - 8px);
+    }
 }
 
-.explore-container .handler {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 58.5%;
-    z-index: 10;
-}
 
 
 /* VIDEO SECTION */
@@ -1044,6 +1082,23 @@ section {
     background: #333333;
 }
 
+.video #speed-card {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Roboto;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #FFF;
+    opacity: 0;
+    z-index: 20;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.video #speed-card.show {
+    opacity: .7;
+}
 
 /* GALLERY SECTION */
 
@@ -1971,7 +2026,7 @@ footer .copyright p:nth-last-of-type(2) {
     }
 
     .video .v-container{
-        padding-bottom: 70px;
+        padding-bottom: 60px;
     }
 
     .v-container .text-block p {
@@ -2027,6 +2082,10 @@ footer .copyright p:nth-last-of-type(2) {
 
     .video .v-container .video-row {
         margin-top: 37px;
+    }
+
+    .video .swiper-controls {
+        margin-top: 42px;
     }
 
 
@@ -2406,6 +2465,14 @@ footer .copyright p:nth-last-of-type(2) {
         grid-template-columns: repeat(2, auto);
     }
 
+    .video .swiper-controls {
+        margin-top: 17px;
+    }
+
+    .video .swiper-pagination-bullet {
+        height: 10px;
+        width: 10px;
+    }
 
     .video .video-cover .play-sign {
         width: 80px;
@@ -2722,6 +2789,9 @@ footer .copyright p:nth-last-of-type(2) {
         margin-top: 40px;
     }
 
+    .explore-container .slider-line {
+        --slider-size: 27px;
+    }
 
     .tickets img {
         max-height: 160px;
@@ -2830,9 +2900,17 @@ footer .copyright p:nth-last-of-type(2) {
         height: 19px;
     }
 
-
     section.video .v-container {
         padding-bottom: 35px;
+    }
+
+    .video .swiper-controls {
+        margin-top: 33px;
+    }
+
+    .video .swiper-pagination-bullet {
+        height: 8px;
+        width: 8px;
     }
 
     .tickets .form-block h4 {

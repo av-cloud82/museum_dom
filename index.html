@@ -266,7 +266,7 @@
 
                     <div class="video-player">
                         <div class="video-cover">
-                            <img src="assets/video/poster0.jpg" alt="Видео">
+                            <img id="cover-image" src="assets/video/poster0.jpg" alt="Видео">
                             <div id="play-sign" class="play-sign"></div>
                         </div>
                         <div id="ytplayer"></div>
@@ -284,11 +284,71 @@
                 <div class="video-row">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <lite-youtube class="youtube-embed swiper-slide" videoid="aWmJ5DgyWPI"></lite-youtube>
-                            <lite-youtube class="youtube-embed swiper-slide" videoid="Vi5D6FKhRmo"></lite-youtube>
-                            <lite-youtube class="youtube-embed swiper-slide" videoid="NOhDysLnTvY"></lite-youtube>
-                            <lite-youtube class="youtube-embed swiper-slide" videoid="NOhDysLnTvY"></lite-youtube>
-                            <lite-youtube class="youtube-embed swiper-slide" videoid="NOhDysLnTvY"></lite-youtube>
+                            <div class="swiper-slide">
+                                <iframe
+                                    id="video0"
+                                    class="youtube-embed"
+                                    src="https://www.youtube.com/embed/zp1BXPX8jcU?enablejsapi=1&controls=0" 
+                                    loading="lazy"
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="swiper-slide">
+                                <iframe
+                                    id="video1"
+                                    class="youtube-embed"
+                                    src="https://www.youtube.com/embed/aWmJ5DgyWPI?enablejsapi=1&controls=0" 
+                                    loading="lazy"
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="swiper-slide">
+                                <iframe
+                                    id="video2"
+                                    class="youtube-embed"
+                                    src="https://www.youtube.com/embed/Vi5D6FKhRmo?enablejsapi=1&controls=0" 
+                                    loading="lazy"
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="swiper-slide">
+                                <iframe
+                                    id="video3"
+                                    class="youtube-embed"
+                                    src="https://www.youtube.com/embed/NOhDysLnTvY?enablejsapi=1&controls=0" 
+                                    loading="lazy"
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="swiper-slide">
+                                <iframe
+                                    id="video4"
+                                    class="youtube-embed"
+                                    src="https://www.youtube.com/embed/2OR0OCr6uRE?enablejsapi=1&controls=0" 
+                                    loading="lazy"
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
                         </div>
                         <div class="swiper-controls">
                             <a id="prev" class="swiper-control swiper-button-prev"></a>
@@ -388,7 +448,7 @@
                                 <label>Basic 18+</label>
                                 <span>
                                     <button class="value-control" onclick="adultsInput.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                    <input class="value-input" id="adultsInput" type="number" value="1" min="0" max="10" step="1" aria-label="Selection">
+                                    <input class="value-input" id="adultsInput" type="number" disabled value="1" min="0" max="10" step="1" aria-label="Selection">
                                     <button class="value-control" onclick="adultsInput.stepUp()" title="Increase value" aria-label="Increase value">+</button>
                                 </span>
                             </div>
@@ -396,7 +456,7 @@
                                 <label>Senior 65+</label>
                                 <span>
                                     <button class="value-control" onclick="seniors.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                    <input class="value-input" type="number" id="seniors" value="1" min="0" max="10" step="1" aria-label="Selection">
+                                    <input class="value-input" type="number" disabled id="seniors" value="1" min="0" max="10" step="1" aria-label="Selection">
                                     <button class="value-control" onclick="seniors.stepUp()" title="Increase value" aria-label="Increase value">+</button>
                                 </span>
                             </div>

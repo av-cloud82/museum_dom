@@ -18,6 +18,11 @@ function onYouTubeIframeAPIReady() {
       onStateChange: onPlayerStateChange,
     },
   })
+
+  const allFrames = document.querySelectorAll(".swiper-slide .youtube-embed")
+  .forEach(function(each){
+    ytManager.register(each.id);
+  })
 }
 
 function onPlayerReady(){
@@ -43,11 +48,11 @@ function onPlayerReady(){
   document
     .getElementById("play-sign")
     .addEventListener("click", togglePlayPause);
-
+  
   document
     .querySelector(".video-cover")
     .addEventListener("click", togglePlayPause);
-  
+
   document
     .getElementById("volume-btn")
     .addEventListener("click", toggleMute);
@@ -171,7 +176,6 @@ function onPlayerStateChange(event) {
 
   if (event.data === YT.PlayerState.CUED) {
     duration = player.getDuration();
-    console.log(duration)
   }
 }
 
@@ -184,14 +188,16 @@ function formatTime(seconds) {
 }
 
 
-
+// ********************************************************
 // Here we add slider functionality to video block
+// ********************************************************
 const swiper = new Swiper('.swiper', {
   // Optional parameters
   direction: 'horizontal',
   slidesPerView: 2,
-  spaceBetween: 40,
+  spaceBetween: 20,
   loop: true,
+  allowTouchMove: true,
 
   // If we need pagination
   pagination: {
@@ -202,7 +208,7 @@ const swiper = new Swiper('.swiper', {
   breakpoints: {
     1024: {
       slidesPerView: 3,
-      spaceBetween: 20,
+      spaceBetween: 40,
     }
   },
 
@@ -212,3 +218,75 @@ const swiper = new Swiper('.swiper', {
     prevEl: '.swiper-button-prev',
   },
 });
+
+
+swiper.on("realIndexChange", function(){
+  ytManager.changeMainCover();
+});
+
+swiper.on("beforeTransitionStart", function(){
+  ytManager.videoPlaying();
+})
+
+
+
+// ********************************************************
+// Here we make all video pause
+// ********************************************************
+const ytManager = (function YTPlayerManager() {
+  let allPlayers = [],
+      allCovers = [
+        "assets/posters/poster0.jpg",
+        "assets/posters/poster3.jpg",
+        "assets/posters/poster1.jpg",
+        "assets/posters/poster2.jpg",
+        "assets/posters/poster4.jpg",
+      ]
+      PLAYING = 1
+      PAUSED = 2;
+
+
+  function register(id) {
+    allPlayers.push({
+      id: id,
+      player: makePlayer(id),
+    });
+  }
+
+  function makePlayer(id) {
+      return new YT.Player(id, {
+        events: {
+          'onStateChange': function(event) {
+            if(event.data == PLAYING) {
+              videoPlaying(id);
+            } else if (event.data == PAUSED) {
+              stopCurrentVideo(id)
+            }
+          }
+        }
+      });
+  }
+
+  function videoPlaying(id) {
+    allPlayers.forEach(function(item, index) {
+      if(item.id !== id) {
+        item.player.pauseVideo();
+      }
+    });
+  }
+
+  function changeMainCover(){
+    const coverImage = document.querySelector("#cover-image");
+    const currentVideoId = allPlayers[swiper.realIndex].player.playerInfo.videoData.video_id;
+    player.cueVideoById(currentVideoId);
+    coverImage.src = allCovers[swiper.realIndex];
+    console.log(coverImage.src);
+  }
+
+  return { 
+    register,
+    allPlayers,
+    videoPlaying,
+    changeMainCover,
+   };
+})();

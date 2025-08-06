@@ -737,7 +737,7 @@ section {
 }
 
 .video .v-container{
-    padding-bottom: 70px;
+    padding-bottom: 75px;
 }
 
 .video .text-block {
@@ -981,6 +981,16 @@ section {
     position: relative;
 }
 
+.video .swiper-slide,
+.video .youtube-embed {
+    width: 100%;
+    aspect-ratio: 425 / 240;
+}
+
+.video .swiper-slide {
+    position: relative;
+}
+
 .video .swiper-controls {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -1003,7 +1013,7 @@ section {
 }
 
 .video .swiper-controls {
-    margin-top: 35px;
+    margin-top: 38px;
 }
 
 .video .swiper-control {
@@ -2394,10 +2404,6 @@ footer .copyright p:nth-last-of-type(2) {
         margin-top: 17px;
         column-gap: 20px;
         grid-template-columns: repeat(2, auto);
-    }
-
-    .video .v-container .video-row .youtube-embed:nth-child(3) {
-        display: none;
     }
 
 

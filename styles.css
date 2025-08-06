@@ -738,26 +738,26 @@ section {
     left: var(--position);
     transform: translate(-50%, -50%);
     pointer-events: none;
+}
 
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        width: 3px;
-        height: 350px;
-        background: #FFF;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.explore-container .slider-line::before,
+.explore-container .slider-line::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 350px;
+    background: #FFF;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-    &::before {
-        bottom: calc(var(--slider-size) - 8px);
-        right: 10px;
-    }
+.explore-container .slider-line::before {
+    bottom: calc(var(--slider-size) - 8px);
+    right: 10px;
+}
 
-    &::after {
-        top: calc(var(--slider-size) - 8px);
-    }
+.explore-container .slider-line::after {
+    top: calc(var(--slider-size) - 8px);
 }
 
 

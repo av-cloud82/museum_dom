@@ -99,6 +99,8 @@ function togglePlayPause(){
   const overlay = document.getElementById("play-sign");
   const btn = document.getElementById("play-pause");
 
+  ytManager.stopAllVideos()
+
   if (state === YT.PlayerState.PLAYING || seekBar.value === "100") {
     player.pauseVideo();
     overlay.style.opacity = ".7";
@@ -260,7 +262,7 @@ swiper.on("realIndexChange", function(){
 });
 
 swiper.on("beforeTransitionStart", function(){
-  ytManager.videoPlaying();
+  ytManager.stopAllVideos();
 })
 
 
@@ -294,8 +296,6 @@ const ytManager = (function YTPlayerManager() {
           'onStateChange': function(event) {
             if(event.data == PLAYING) {
               videoPlaying(id);
-            } else if (event.data == PAUSED) {
-              stopCurrentVideo(id)
             }
           }
         }
@@ -303,25 +303,63 @@ const ytManager = (function YTPlayerManager() {
   }
 
   function videoPlaying(id) {
+    console.log(id)
     allPlayers.forEach(function(item, index) {
-      if(item.id !== id) {
+      if(item.id !== id)
         item.player.pauseVideo();
+      })
+  };
+ 
+
+  function stopAllVideos() {
+    allPlayers.forEach(function(item, index) {
+      if (item.player.getPlayerState() === PLAYING) {
+        item.player.stopVideo();
       }
     });
+  }
+
+  function playStopVideo(id){
+    allPlayers.forEach(function(item, index){
+      console.log(item)
+      if (item.id !== id && item.player.getPlayerState() === PLAYING) {
+        item.player.stopVideo();
+      }
+      if (item.id === id) {
+        if (item.player.getPlayerState() !== PLAYING){
+          item.player.playVideo();
+        } else if (item.player.getPlayerState() === PLAYING) {
+          item.player.pauseVideo();
+        } else {
+          item.player.stopVideo();
+        }
+      }
+    })
   }
 
   function changeMainCover(){
     const coverImage = document.querySelector("#cover-image");
     const currentVideoId = allPlayers[swiper.realIndex].player.playerInfo.videoData.video_id;
+    stopAllVideos();
     player.cueVideoById(currentVideoId);
     coverImage.src = allCovers[swiper.realIndex];
-    console.log(coverImage.src);
+
   }
+
+  document.querySelectorAll(".v-cover").forEach(function(each){
+    each.addEventListener("click", function(e){
+      const closestParent = each.closest(".swiper-slide");
+      const frame = closestParent.querySelector("iframe");
+      playStopVideo(frame.id)
+    })
+  })
+  
 
   return { 
     register,
     allPlayers,
     videoPlaying,
     changeMainCover,
+    stopAllVideos,
    };
 })();

@@ -246,6 +246,7 @@ const swiper = new Swiper('.swiper', {
     1024: {
       slidesPerView: 3,
       spaceBetween: 40,
+      allowTouchMove: false,
     }
   },
 
@@ -291,19 +292,21 @@ const ytManager = (function YTPlayerManager() {
   }
 
   function makePlayer(id) {
-      return new YT.Player(id, {
-        events: {
-          'onStateChange': function(event) {
-            if(event.data == PLAYING) {
-              videoPlaying(id);
-            }
+    return new YT.Player(id, {
+      events: {
+        'onStateChange': function(event) {
+          if(event.data == PLAYING) {
+            videoPlaying(id);
           }
-        }
-      });
+        },
+        'onError': function(event) {
+          onPlayerError(event, id);
+        },
+      }
+    });
   }
 
   function videoPlaying(id) {
-    console.log(id)
     allPlayers.forEach(function(item, index) {
       if(item.id !== id)
         item.player.pauseVideo();
@@ -321,7 +324,6 @@ const ytManager = (function YTPlayerManager() {
 
   function playStopVideo(id){
     allPlayers.forEach(function(item, index){
-      console.log(item)
       if (item.id !== id && item.player.getPlayerState() === PLAYING) {
         item.player.stopVideo();
       }
@@ -346,6 +348,15 @@ const ytManager = (function YTPlayerManager() {
 
   }
 
+  function onPlayerError(event, id) {
+    const closestParent = document.getElementById(id).closest(".swiper-slide");
+    const cover = closestParent.querySelector(".v-cover");
+
+    if (event.data === 101 || event.data === 150) {
+      cover.style.display = "none";
+    }
+  }
+
   document.querySelectorAll(".v-cover").forEach(function(each){
     each.addEventListener("click", function(e){
       const closestParent = each.closest(".swiper-slide");
@@ -354,7 +365,6 @@ const ytManager = (function YTPlayerManager() {
     })
   })
   
-
   return { 
     register,
     allPlayers,

@@ -1131,25 +1131,18 @@ section {
 }
 
 .g-cards {
-    column-count: 3;
+    display: flex;
+    flex-direction: row;
     column-gap: 36px;
 }
 
-.g-cards div {
-    break-inside: avoid;
-    margin-bottom: 24px;
+.column1,
+.column3 {
+    margin-top: 50px;
 }
 
-.g-cards div:nth-of-type(1),
-.g-cards div:nth-of-type(9){
-    padding-top: 50px;
-}
-
-.g-cards div:nth-of-type(n + 14) {
-    display: none;
-}
-
-.gallery .shaddow {
+.g-cards::after {
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1160,6 +1153,18 @@ section {
     pointer-events: none;
 }
 
+.g-cards img {
+    margin-bottom: 24px;
+    /* For animation */
+    transform: translateY(200px) scale(0.6);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+.g-cards img.show {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
 
 
 /* TICKETS SECTION */
@@ -2491,8 +2496,11 @@ footer .copyright p:nth-last-of-type(2) {
 
     .gallery .g-cards {
         margin-top: 40px;
-        column-count: 2;
         column-gap: 24px;
+    }
+
+    .gallery .column3 {
+        display: none;
     }
 
     .gallery {

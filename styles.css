@@ -1278,8 +1278,8 @@ section {
     top: 50%;
     transform: translateY(-50%);
     left: 7px;
-    height: 17px;
-    width: 17px;
+    height: 18px;
+    width: 18px;
     /* background-color: #eee; */
     border-radius: 50px;
     border: solid 2px #000;
@@ -1311,7 +1311,7 @@ section {
 .tickets .radio-input .radio-container .checkmark:after {
     top: 50%;
     left: 50%;
-    transform: translate(-40%, -40%);
+    transform: translate(-50%, -50%);
     width: 6px;
     height: 6px;
     border-radius: 50%;

@@ -47,12 +47,12 @@ function appendImages(){
 
     const allContainers = [container1, container2, container3];
 
-    const visibleContainers = allContainers.filter((container) => {
-        return window.getComputedStyle(container).display !== 'none';
-    });
+    // const visibleContainers = allContainers.filter((container) => {
+    //     return window.getComputedStyle(container).display !== 'none';
+    // });
     
     shuffledImages.forEach(function(each, index){
-        const container = visibleContainers[index % visibleContainers.length];
+        const container = allContainers[index % allContainers.length];
         container.append(each);
     })
 

@@ -10,16 +10,12 @@ function showHide(){
     const rect = gallery.getBoundingClientRect();
     const halfViewport = window.innerHeight / 2;
     const toBeShown = rect.top < halfViewport
-    console.log(rect.top)
-    console.log(halfViewport)
 
 
     if (rect.top < halfViewport) {
         showImages(imgs);
-        console.log("1 function fired")
     } else if (rect.top >= window.innerHeight) {
         hideImages(imgs);
-        console.log("2 function fired")
     }
 }
 
@@ -63,7 +59,7 @@ function showImages(images){
     images.forEach(function(each, index){
         setTimeout(function(){
             each.classList.add("show");
-        }, 100 * index);
+        }, 150 * index);
     })
 }
 

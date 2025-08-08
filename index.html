@@ -18,7 +18,8 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preload" href="css/swiper-bundle.min.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+    <link rel="stylesheet" href="css/flatpickr.min.css">
+
 </head>
 
 <body>
@@ -242,10 +243,10 @@
                 </div>
                 <div class="image-block">
                     <div class="before-after">
-                        <img src="assets/after.webp" loading="lazy" alt="After" class="after slider-image image-before">
-                        <img src="assets/before.webp" loading="lazy" alt="After" class="after slider-image">
+                        <img src="assets/before.webp" loading="lazy" alt="After" class="after slider-image image-before">
+                        <img src="assets/after.webp" loading="lazy" alt="After" class="after slider-image">
                     </div>
-                    <input class="ba-slider" type="range" min="0" max="100" value="50">
+                    <input class="ba-slider" type="range" min="0" max="100">
                     <div class="slider-line"></div>
                     <div class="slider-button"></div>
                 </div>
@@ -371,6 +372,124 @@
         </section>
 
         <section class="tickets" id="tickets">
+            <div id="tickets-popup">
+                <div id="close-btn" class="close-btn"></div>
+
+                <div class="left-section">
+                    <img class="tickets-logo" src="assets/icons/logo-for-form.svg" alt="logo">
+                    <h3>Booking tickets</h3>
+                    <p>Tour to Louvre</p>
+                    <hr>
+                    <form>
+
+                        <div class="input-fields">
+                            <div class="input-control date">
+                                <input id="input-date" name="date" type="text" placeholder="Date">
+                                <div class="error"></div>
+                            </div>
+                            <div class="input-control time">
+                                <div class="dropdown">
+                                    <div class="dropdown-selected">Time</div>
+                                    <ul class="dropdown-options y-scroll">
+                                        <li>---</li>
+                                    </ul>
+                                    <input type="hidden" name="teme" value="">
+                                </div>
+                                <div class="error"></div>
+                            </div>
+                            <div class="input-control name">
+                                <input id="input-name" name="name" type="text" placeholder="Name">
+                                <div class="error"></div>
+                            </div>
+                            <div class="input-control email">
+                                <input id="input-email" name="email" type="text" placeholder="Email">
+                                <div class="error"></div>
+                            </div>
+                            <div class="input-control phone">
+                                <input id="input-phone" name="phone" type="text" placeholder="Phone">
+                                <div class="error"></div>
+                            </div>
+                            <div class="input-control ticket-type">
+                                <div class="dropdown">
+                                    <div class="dropdown-selected">Ticket Type</div>
+                                    <ul class="dropdown-options">
+                                        <li>---</li>
+                                        <li>Permanent exibition</li>
+                                        <li>Temporary exibition</li>
+                                        <li>Combined Admission</li>
+                                    </ul>
+                                    <input type="hidden" name="ticket-type" value="">
+                                </div>
+                                <div class="error"></div>
+                            </div>
+                            <div class="wrapper">
+                                <h4>Enrty Ticket</h4>
+                                <hr>
+                                <div>
+                                    <p>Basic 18+ (20 €)</p>
+                                    <span>
+                                        <button type="button" onclick="tBasic.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                        <input type="number" disabled id="tBasic" value="1" min="0" max="10" step="1" aria-label="Selection">
+                                        <button type="button" onclick="tBasic.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p>Senior 65+ (10 €)</p>
+                                    <span>
+                                        <button type="button" onclick="tSeniors.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                        <input type="number" disabled id="tSeniors" value="1" min="0" max="10" step="1" aria-label="Selection">
+                                        <button type="button" onclick="tSeniors.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                    </span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+
+                <!-- Right Section -->
+                <div class="right-section">
+                    <div>
+                        <div class="summary">
+                            <h4>Overview</h4>
+                            <span class="subheader">Tour to Louvre</span>
+                            <span class="event-date description">Friday, August 19</span>
+                            <span class="event-time description">16 : 30</span>
+                            <span class="event-type description">Temporary exhibition</span>
+                        </div>
+                        <img src="assets/tickets_image.png" alt="tickets image">
+                    </div>
+                    <div class="subtotal">
+                        <div class="qty">
+                            <span class="tickets-qty">2</span>
+                            <span class="sub-description">Basic (20 €)</span>
+                        </div>
+                        <span class="sub-description">40 €</span>
+                    </div>
+                    <div class="subtotal">
+                        <div class="qty">
+                            <span class="tickets-qty">2</span>
+                            <span class="sub-description">Basic (20 €)</span>
+                        </div>
+                        <span class="sub-description">40 €</span>
+                    </div>
+
+                    <div class="total-section">
+                        <span>Total:</span>
+                        <span><span>60</span> €</span>
+                    </div>
+
+                    <div class="cards">
+                        <img class="card-front" src="assets/card-front.png" alt="card front">
+                        <img class="card-back" src="assets/card-back.png" alt="card back">
+                    </div>
+                    
+                    <button>Book</button>
+                </div>
+                
+            </div>
             <div class="container v-container">
                 <h2>Buy tickets</h2>
                 <hr>
@@ -414,7 +533,7 @@
                             </div>
                             
                             <label class="total">Total €<span class="total-value">220</span></label>
-                            <button class="button-hover" aria-label="Tickets buy button">Buy Now</button>
+                            <button id="buy-btn" class="button-hover" aria-label="Tickets buy button">Buy Now</button>
                         </div>
                     </div>
                 </div>
@@ -532,6 +651,8 @@
     <script src="js_explore.js"></script>
     <script src="js_video.js"></script>
     <script src="js_gallery.js"></script>
+    <script src="js/flatpickr.min.js"></script>
+    <script src="css/js_tickets.js"></script>
     <script rel="preconnect" src="app.js"></script>
 </body>
 </html>

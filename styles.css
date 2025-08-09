@@ -1244,6 +1244,22 @@ section {
     position: relative;
 }
 
+#tickets-popup .input-control .error {
+    position: absolute;
+    color: red;
+    font-family: Roboto;
+    font-size: 18px;
+    font-size: 14px;
+    top: 40px;
+    left: 10px;
+    font-weight: 200;
+    display: none;
+}
+
+#tickets-popup .input-control.error .error{
+    display: block;
+}
+
 #tickets-popup .input-control:nth-child(1),
 #tickets-popup .input-control:nth-child(2) {
     width: 40%;
@@ -1263,6 +1279,17 @@ section {
     font-size: 18px;
     font-weight: 400;
     line-height: normal;
+    
+}
+
+#tickets-popup .input-control.error input {
+    border-color: red;
+}
+
+#tickets-popup .input-control.error input:focus {
+    border-color: red;
+    outline: none;
+    box-shadow: 0 0 2px #ff0000;
 }
 
 #tickets-popup .input-control::before,

@@ -67,14 +67,20 @@ function onPlayerReady(){
 
   // Keyboard shortcuts
   document.addEventListener("keydown", function(e){
+    const vPlayer = document.getElementById("ytplayer");
+    const rect = vPlayer.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (!isVisible) { return };
+
     if (e.code === "Space") {
       e.preventDefault();
       togglePlayPause();
     }
     if (e.code === "ArrowRight") player.seekTo(player.getCurrentTime() + 5, true);
     if (e.code === "ArrowLeft") player.seekTo(player.getCurrentTime() - 5, true);
-    if (e.code === "keyM") toggleMute.call(document.getElementById("volume-btn"));
-    if (e.code === "keyF") toggleFullscreen();
+    if (e.code === "KeyM") toggleMute.call(document.getElementById("volume-btn"));
+    if (e.code === "KeyF") toggleFullscreen();
 
 
     let shiftKey = e.shiftKey,

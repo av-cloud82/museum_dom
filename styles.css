@@ -1646,6 +1646,7 @@ section {
     height: 25px;
     top: 30px;
     right: 30px;
+    cursor: pointer;
 }
 
 

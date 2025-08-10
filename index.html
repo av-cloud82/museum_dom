@@ -393,7 +393,7 @@
                                     <ul class="dropdown-options y-scroll">
                                         <li>---</li>
                                     </ul>
-                                    <input type="hidden" name="teme" value="">
+                                    <input id="input-time" type="hidden" name="teme" value="">
                                 </div>
                                 <div class="error"></div>
                             </div>
@@ -411,14 +411,13 @@
                             </div>
                             <div class="input-control ticket-type">
                                 <div class="dropdown">
-                                    <div class="dropdown-selected">Ticket Type</div>
+                                    <div id="popup-ttype-display" class="dropdown-selected">Permanent exibition</div>
                                     <ul class="dropdown-options">
-                                        <li>---</li>
-                                        <li>Permanent exibition</li>
-                                        <li>Temporary exibition</li>
-                                        <li>Combined Admission</li>
+                                        <li data-value="Permanent exhibition" data-price="20">Permanent exibition</li>
+                                        <li data-value="Temporary exhibition" data-price="25">Temporary exibition</li>
+                                        <li data-value="Combined Admission" data-price="40">Combined Admission</li>
                                     </ul>
-                                    <input type="hidden" name="ticket-type" value="">
+                                    <input id="popup-ttype-input" type="hidden" name="ticket-type" value="" data-price="">
                                 </div>
                                 <div class="error"></div>
                             </div>
@@ -426,19 +425,19 @@
                                 <h4>Enrty Ticket</h4>
                                 <hr>
                                 <div>
-                                    <p>Basic 18+ (20 €)</p>
+                                    <p id="basicPrice1">Basic 18+ (20 €)</p>
                                     <span>
-                                        <button type="button" onclick="tBasic.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                        <input type="number" disabled id="tBasic" value="1" min="0" max="10" step="1" aria-label="Selection">
-                                        <button type="button" onclick="tBasic.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                        <button type="button" onclick="tBasic.stepDown(); tBasic.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                        <input type="number" disabled id="tBasic" value="0" min="0" max="10" step="1" aria-label="Selection">
+                                        <button type="button" onclick="tBasic.stepUp(); tBasic.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
                                     </span>
                                 </div>
                                 <div>
-                                    <p>Senior 65+ (10 €)</p>
+                                    <p id="seniorPrice1">Senior 65+ (10 €)</p>
                                     <span>
-                                        <button type="button" onclick="tSeniors.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                        <input type="number" disabled id="tSeniors" value="1" min="0" max="10" step="1" aria-label="Selection">
-                                        <button type="button" onclick="tSeniors.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                        <button type="button" onclick="tSeniors.stepDown(); tSeniors.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                        <input type="number" disabled id="tSeniors" value="0" min="0" max="10" step="1" aria-label="Selection">
+                                        <button type="button" onclick="tSeniors.stepUp(); tSeniors.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
                                     </span>
                                 </div>
 
@@ -455,30 +454,30 @@
                         <div class="summary">
                             <h4>Overview</h4>
                             <span class="subheader">Tour to Louvre</span>
-                            <span class="event-date description">Friday, August 19</span>
-                            <span class="event-time description">16 : 30</span>
-                            <span class="event-type description">Temporary exhibition</span>
+                            <span class="event-date description">––</span>
+                            <span class="event-time description">––</span>
+                            <span class="event-type description">Permanent exibition</span>
                         </div>
                         <img src="assets/tickets_image.png" alt="tickets image">
                     </div>
                     <div class="subtotal">
                         <div class="qty">
-                            <span class="tickets-qty">2</span>
-                            <span class="sub-description">Basic (20 €)</span>
+                            <span id="popupBasicSubtotal" class="tickets-qty">0</span>
+                            <span id="basicPrice2" class="sub-description">Basic (20 €)</span>
                         </div>
-                        <span class="sub-description">40 €</span>
+                        <span id="popupBasicSubtotalValue" class="sub-description">0 €</span>
                     </div>
                     <div class="subtotal">
                         <div class="qty">
-                            <span class="tickets-qty">2</span>
-                            <span class="sub-description">Basic (20 €)</span>
+                            <span id="popupSeniorSubtotal" class="tickets-qty">0</span>
+                            <span id="seniorPrice2" class="sub-description">Senior (10 €)</span>
                         </div>
-                        <span class="sub-description">40 €</span>
+                        <span id="popupSeniorSubtotalValue" class="sub-description">0 €</span>
                     </div>
 
                     <div class="total-section">
                         <span>Total:</span>
-                        <span><span>60</span> €</span>
+                        <span><span id="popupTotalValue">0</span> €</span>
                     </div>
 
                     <div class="cards">
@@ -501,15 +500,15 @@
                         <div class="radio-input">
                             <h4>Ticket Type</h4>
                             <label class="radio-container">
-                                <input type="radio" name="tickets" checked="checked" aria-label="Selection"> Permanent exhibition
+                                <input type="radio" name="ticket-type" checked="checked" aria-label="Selection" value="Permanent exhibition" data-price="20"> Permanent exhibition
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-container">
-                                <input type="radio" name="tickets" aria-label="Selection"> Temporary exhibition
+                                <input type="radio" name="ticket-type" aria-label="Selection" value="Temporary exhibition" data-price="25"> Temporary exhibition
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-container">
-                                <input type="radio" name="tickets" aria-label="Selection"> Combined Admission
+                                <input type="radio" name="ticket-type" aria-label="Selection" value="Combined Admission" data-price="40"> Combined Admission
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -518,21 +517,21 @@
                             <div>
                                 <label>Basic 18+</label>
                                 <span>
-                                    <button class="value-control" onclick="adultsInput.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                    <input class="value-input" id="adultsInput" type="number" disabled value="1" min="0" max="10" step="1" aria-label="Selection">
-                                    <button class="value-control" onclick="adultsInput.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                    <button class="value-control" onclick="adultsInput.stepDown(); adultsInput.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                    <input class="value-input" disabled id="adultsInput" type="number" value="0" min="0" max="10" step="1" aria-label="Selection">
+                                    <button class="value-control" onclick="adultsInput.stepUp(); adultsInput.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
                                 </span>
                             </div>
                             <div>
                                 <label>Senior 65+</label>
                                 <span>
-                                    <button class="value-control" onclick="seniors.stepDown()" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                    <input class="value-input" type="number" disabled id="seniors" value="1" min="0" max="10" step="1" aria-label="Selection">
-                                    <button class="value-control" onclick="seniors.stepUp()" title="Increase value" aria-label="Increase value">+</button>
+                                    <button class="value-control" onclick="seniors.stepDown(); seniors.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                    <input class="value-input" type="number" disabled id="seniors" value="0" min="0" max="10" step="1" aria-label="Selection">
+                                    <button class="value-control" onclick="seniors.stepUp(); seniors.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
                                 </span>
                             </div>
                             
-                            <label class="total">Total €<span class="total-value">220</span></label>
+                            <label class="total">Total €<span id="totalValue" class="total-value">0</span></label>
                             <button id="buy-btn" class="button-hover" aria-label="Tickets buy button">Buy Now</button>
                         </div>
                     </div>

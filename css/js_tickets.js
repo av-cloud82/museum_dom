@@ -4,6 +4,8 @@ datePickerConfig = {
     dateFormat: "d.m.Y",
 }
 
+
+
 flatpickr(dateField, datePickerConfig);
 
 //Create dropdown time slots
@@ -66,6 +68,8 @@ document.querySelectorAll(".dropdown").forEach((dropdown) => {
             e.stopPropagation();
             selected.textContent = option.textContent;
             hiddenInput.value = option.dataset.value;
+            if (option.dataset.price) {hiddenInput.dataset.price = option.dataset.price;}
+            hiddenInput.dispatchEvent(new Event('input'));
             dropdown.classList.remove("open");
         });
     });
@@ -88,7 +92,7 @@ const closeBtn = document.querySelector("#close-btn");
 
 
 
-// Here we show error
+// Here we show-hide error
 function validationError(element, errorMsg){
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector(".error");
@@ -161,7 +165,6 @@ function removeError(element){
     phoneField.addEventListener("input", () => {
         const value = phoneField.value.trim();
         const groups = value.split(/[- ]/);
-        console.log(groups);
         const allDigits = groups.join('');
         const isAllDigitsOnly = /^\d+$/.test(allDigits);
         const validGroupLengths = groups.every((g) => {
@@ -185,3 +188,154 @@ function removeError(element){
         }
     });
 })();
+
+
+(function popupEvents(){
+    let ticketType,
+        qtyBasic, qtySenior, 
+        eventDate, eventTime,
+        clientName, clientEmail, clientPhone;
+
+
+    const radioTtypeSelect = document.querySelectorAll(".radio-container input")
+    const basicQtyInput = document.querySelector("#adultsInput");
+    const seniorQtyInput = document.querySelector("#seniors");
+
+    const popupTtypeDisplay = document.querySelector("#popup-ttype-display");
+    const popupTtypeInput = document.querySelector("#popup-ttype-input");
+    const popupTtypeDiaplayField = document.querySelector(".right-section .event-type");
+    const popupBasicSubtotal = document.querySelector("#popupBasicSubtotal");
+    const popupSeniorSubtotal = document.querySelector("#popupSeniorSubtotal");
+    
+
+
+    ticketType = 20;
+    qtyBasic = 0;
+    qtySenior = 0;
+    total = 0;
+
+    radioTtypeSelect.forEach((each) => {
+        
+        each.addEventListener("change", () => {
+            ticketType = Number(each.dataset.price);
+            popupTtypeDisplay.textContent = each.value;
+            popupTtypeInput.value = each.value;
+            popupTtypeInput.dataset.price = each.dataset.price;
+            popupTtypeDiaplayField.textContent = each.value;
+
+            priceCalculation()
+        })
+        
+    })
+
+    basicQtyInput.addEventListener("input", function(){
+        qtyBasic = this.value;
+
+        const popupBasicQty = document.querySelector("#tBasic");
+        popupBasicQty.value = this.value;
+        popupBasicSubtotal.textContent = this.value;
+        priceCalculation()
+    })
+    
+    seniorQtyInput.addEventListener("input", function(){
+        qtySenior = this.value;
+
+        const popupSeniorsQty = document.querySelector("#tSeniors");
+        popupSeniorsQty.value = this.value;
+        popupSeniorSubtotal.textContent = this.value;
+        priceCalculation()
+    })
+
+    document.querySelector("#input-date").addEventListener("input", function(){
+        const dateDisplalyField = document.querySelector(".right-section .event-date");
+        eventDate = this.value;
+        dateDisplalyField.innerText = formatDate(this.value);
+    })
+
+    document.querySelector("#input-time").addEventListener("input", function(){
+        const timeDisplalyField = document.querySelector(".right-section .event-time");
+        eventTime = this.value;
+        timeDisplalyField.innerText = this.value;
+    })
+
+    document.querySelector("#input-name").addEventListener("input", function(){
+        clientName = this.value;
+    })
+
+    document.querySelector("#input-email").addEventListener("input", function(){
+        clientEmail = this.value;
+    })
+
+    document.querySelector("#input-phone").addEventListener("input", function(){
+        clientPhone = this.value;
+    })
+
+    popupTtypeInput.addEventListener("input", function(){
+        ticketType = this.dataset.price
+        popupTtypeDiaplayField.textContent = this.value;
+
+        const radioToSelect = document.querySelector(`.radio-input input[value="${this.value}"]`)
+        if (radioToSelect) {
+            radioToSelect.checked = true;
+        }
+        priceCalculation()
+        console.log("Price", this.dataset.price)
+        console.log("Value", this.value)
+        
+    })
+    
+    document.querySelector("#tBasic").addEventListener("input", function(){
+        qtyBasic = this.value;
+        popupBasicSubtotal.textContent = this.value;
+        basicQtyInput.value = this.value;
+        priceCalculation()
+    })
+    
+    document.querySelector("#tSeniors").addEventListener("input", function(){
+        qtySenior = this.value;
+        popupSeniorSubtotal.textContent = this.value;
+        seniorQtyInput.value = this.value;
+        priceCalculation()
+    })
+
+    
+    function priceCalculation(){
+        let totalBasic = ticketType * qtyBasic
+        let totalSeniors = ticketType * qtySenior * 0.5;
+        total = totalBasic + totalSeniors;
+
+
+        const totalValue = document.querySelector("#totalValue");
+        const popupTotalValue = document.querySelector("#popupTotalValue");
+        const popupBasicSubtotalValue = document.querySelector("#popupBasicSubtotalValue");
+        const popupSeniorSubtotalValue = document.querySelector("#popupSeniorSubtotalValue");
+
+        const basicPrice1 = document.querySelector("#basicPrice1");
+        const seniorPrice1 = document.querySelector("#seniorPrice1");
+        const basicPrice2 = document.querySelector("#basicPrice2");
+        const seniorPrice2 = document.querySelector("#seniorPrice2");
+        basicPrice1.textContent = `Basic 18+ (${popupTtypeInput.dataset.price} €)`
+        seniorPrice1.textContent = `Senior 65+ (${Number(popupTtypeInput.dataset.price) * 0.5} €)`
+        basicPrice2.textContent = `Basic (${popupTtypeInput.dataset.price} €)`
+        seniorPrice2.textContent = `Senior (${Number(popupTtypeInput.dataset.price) * 0.5} €)`
+
+        popupBasicSubtotalValue.innerText = `${totalBasic} €`;
+        popupSeniorSubtotalValue.textContent = `${totalSeniors} €`;
+        totalValue.textContent = total;
+        popupTotalValue.textContent = total;
+    }
+
+
+})()
+
+
+
+function formatDate(input) {
+    const [day, month, year] = input.split('.').map(Number);
+    const date = new Date(year, month - 1, day);
+    
+    const options = {weekday: "long", month: "long", day: "numeric"};
+    
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+}
+

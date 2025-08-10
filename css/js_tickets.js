@@ -2,11 +2,10 @@ const dateField = document.querySelector("#input-date");
 
 datePickerConfig = {
     dateFormat: "d.m.Y",
+    minDate: "today",
 }
-
-
-
 flatpickr(dateField, datePickerConfig);
+
 
 //Create dropdown time slots
 (function () {
@@ -84,10 +83,20 @@ document.querySelectorAll(".dropdown").forEach((dropdown) => {
 // Show / Hide Popup
 const buyBtn = document.querySelector("#buy-btn");
 const closeBtn = document.querySelector("#close-btn");
+const ticketsPopup = document.querySelector("#tickets-popup")
+const ticketsOverlay = document.querySelector("#tickets-overlay");
 [buyBtn, closeBtn].forEach((each) => {
-    each.addEventListener("click", () => {
-        document.querySelector("#tickets-popup").classList.toggle("show");
+    each.addEventListener("click", (e) => {
+        ticketsPopup.classList.toggle("show");
+        ticketsOverlay.classList.toggle("show");
+        document.body.classList.toggle("no-scroll");
     })
+})
+
+ticketsOverlay.addEventListener("click", function(){
+    ticketsPopup.classList.remove("show");
+    ticketsOverlay.classList.remove("show");
+    document.body.classList.remove("no-scroll");
 })
 
 
@@ -279,9 +288,6 @@ function removeError(element){
             radioToSelect.checked = true;
         }
         priceCalculation()
-        console.log("Price", this.dataset.price)
-        console.log("Value", this.value)
-        
     })
     
     document.querySelector("#tBasic").addEventListener("input", function(){

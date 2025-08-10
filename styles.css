@@ -38,6 +38,10 @@
 /* STANDARD SETTINGS RESET */
 /* Box sizing rules */
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 :root {
     --swiper-theme-color: #999999;
 }
@@ -1180,18 +1184,43 @@ section {
     flex-wrap: wrap;
     column-gap: 40px;
     row-gap: 50px;
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(-250%);
+    max-height: 90vh;
+    overflow-y: auto;
     width: 100%;
     max-width: 1440px;
     padding: 90px 0;
     background: #FFF;
     z-index: 100;
-    transform: translateX(-150%);
     transition: transform 0.8s ease-out;
 }
 
+#tickets-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background: rgb(3, 3, 3);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#tickets-overlay.show {
+    opacity: 0.7;
+    visibility: visible;
+    pointer-events: auto;
+    
+}
+
 #tickets-popup.show {
-    transform: translateX(0);
+    transform: translate(-50%, -50%) translateX(0);
 }
 
 .flatpickr-calendar {

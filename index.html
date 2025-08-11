@@ -373,122 +373,122 @@
 
         
         <section class="tickets" id="tickets">
-            <div id="tickets-overlay" class="tickets-overlay"></div>
-            <div id="tickets-popup">
-                <div id="close-btn" class="close-btn"></div>
-                <div class="left-section">
-                    <img class="tickets-logo" src="assets/icons/logo-for-form.svg" alt="logo">
-                    <h3>Booking tickets</h3>
-                    <p>Tour to Louvre</p>
-                    <hr>
-                    <form>
+            <div id="tickets-overlay" class="tickets-overlay">
+                <div id="tickets-popup">
+                    <div id="close-btn" class="close-btn"></div>
+                    <div class="left-section">
+                        <img class="tickets-logo" src="assets/icons/logo-for-form.svg" alt="logo">
+                        <h3>Booking tickets</h3>
+                        <p>Tour to Louvre</p>
+                        <hr>
+                        <form>
 
-                        <div class="input-fields">
-                            <div class="input-control date">
-                                <input id="input-date" name="date" type="text" placeholder="Date">
-                                <div class="error"></div>
-                            </div>
-                            <div class="input-control time">
-                                <div class="dropdown">
-                                    <div class="dropdown-selected">Time</div>
-                                    <ul class="dropdown-options y-scroll">
-                                        <li>---</li>
-                                    </ul>
-                                    <input id="input-time" type="hidden" name="teme" value="">
+                            <div class="input-fields">
+                                <div class="input-control date">
+                                    <input id="input-date" name="date" type="text" placeholder="Date">
+                                    <div class="error"></div>
                                 </div>
-                                <div class="error"></div>
-                            </div>
-                            <div class="input-control name">
-                                <input id="input-name" name="name" type="text" placeholder="Name">
-                                <div class="error">Erorr</div>
-                            </div>
-                            <div class="input-control email">
-                                <input id="input-email" name="email" type="text" placeholder="Email">
-                                <div class="error"></div>
-                            </div>
-                            <div class="input-control phone">
-                                <input id="input-phone" name="phone" type="text" placeholder="Phone">
-                                <div class="error"></div>
-                            </div>
-                            <div class="input-control ticket-type">
-                                <div class="dropdown">
-                                    <div id="popup-ttype-display" class="dropdown-selected">Permanent exibition</div>
-                                    <ul class="dropdown-options">
-                                        <li data-value="Permanent exhibition" data-price="20">Permanent exibition</li>
-                                        <li data-value="Temporary exhibition" data-price="25">Temporary exibition</li>
-                                        <li data-value="Combined Admission" data-price="40">Combined Admission</li>
-                                    </ul>
-                                    <input id="popup-ttype-input" type="hidden" name="ticket-type" value="" data-price="">
+                                <div class="input-control time">
+                                    <div class="dropdown">
+                                        <div id="selected-time" class="dropdown-selected">Time</div>
+                                        <ul class="dropdown-options y-scroll">
+                                            <li>---</li>
+                                        </ul>
+                                        <input id="input-time" type="hidden" name="teme" value="">
+                                    </div>
+                                    <div class="error"></div>
                                 </div>
-                                <div class="error"></div>
-                            </div>
-                            <div class="wrapper">
-                                <h4>Enrty Ticket</h4>
-                                <hr>
-                                <div>
-                                    <p id="basicPrice1">Basic 18+ (20 €)</p>
-                                    <span>
-                                        <button type="button" onclick="tBasic.stepDown(); tBasic.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                        <input type="number" disabled id="tBasic" value="0" min="0" max="10" step="1" aria-label="Selection">
-                                        <button type="button" onclick="tBasic.stepUp(); tBasic.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
-                                    </span>
+                                <div class="input-control name">
+                                    <input id="input-name" name="name" type="text" placeholder="Name">
+                                    <div class="error">Erorr</div>
                                 </div>
-                                <div>
-                                    <p id="seniorPrice1">Senior 65+ (10 €)</p>
-                                    <span>
-                                        <button type="button" onclick="tSeniors.stepDown(); tSeniors.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
-                                        <input type="number" disabled id="tSeniors" value="0" min="0" max="10" step="1" aria-label="Selection">
-                                        <button type="button" onclick="tSeniors.stepUp(); tSeniors.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
-                                    </span>
+                                <div class="input-control email">
+                                    <input id="input-email" name="email" type="text" placeholder="Email">
+                                    <div class="error"></div>
                                 </div>
+                                <div class="input-control phone">
+                                    <input id="input-phone" name="phone" type="text" placeholder="Phone">
+                                    <div class="error"></div>
+                                </div>
+                                <div class="input-control ticket-type">
+                                    <div class="dropdown">
+                                        <div id="popup-ttype-display" class="dropdown-selected">Permanent exibition</div>
+                                        <ul class="dropdown-options">
+                                            <li data-value="Permanent exhibition" data-price="20">Permanent exibition</li>
+                                            <li data-value="Temporary exhibition" data-price="25">Temporary exibition</li>
+                                            <li data-value="Combined Admission" data-price="40">Combined Admission</li>
+                                        </ul>
+                                        <input id="popup-ttype-input" type="hidden" name="ticket-type" value="" data-price="">
+                                    </div>
+                                    <div class="error"></div>
+                                </div>
+                                <div class="wrapper">
+                                    <h4>Enrty Ticket</h4>
+                                    <hr>
+                                    <div>
+                                        <p id="basicPrice1">Basic 18+ (20 €)</p>
+                                        <span>
+                                            <button type="button" onclick="tBasic.stepDown(); tBasic.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                            <input type="number" disabled id="tBasic" value="0" min="0" max="10" step="1" aria-label="Selection">
+                                            <button type="button" onclick="tBasic.stepUp(); tBasic.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p id="seniorPrice1">Senior 65+ (10 €)</p>
+                                        <span>
+                                            <button type="button" onclick="tSeniors.stepDown(); tSeniors.dispatchEvent(new Event('input'));" title="Decrease value" aria-label="Decrease value">&ndash;</button>
+                                            <input type="number" disabled id="tSeniors" value="0" min="0" max="10" step="1" aria-label="Selection">
+                                            <button type="button" onclick="tSeniors.stepUp(); tSeniors.dispatchEvent(new Event('input'));" title="Increase value" aria-label="Increase value">+</button>
+                                        </span>
+                                    </div>
 
-                                
+                                    
+                                </div>
                             </div>
+                            
+                        </form>
+                    </div>
+
+                    <!-- Right Section -->
+                    <div class="right-section">
+                        <div>
+                            <div class="summary">
+                                <h4>Overview</h4>
+                                <span class="subheader">Tour to Louvre</span>
+                                <span class="event-date description">––</span>
+                                <span class="event-time description">––</span>
+                                <span class="event-type description">Permanent exibition</span>
+                            </div>
+                            <img src="assets/tickets_image.png" alt="tickets image">
+                        </div>
+                        <div class="subtotal">
+                            <div class="qty">
+                                <span id="popupBasicSubtotal" class="tickets-qty">0</span>
+                                <span id="basicPrice2" class="sub-description">Basic (20 €)</span>
+                            </div>
+                            <span id="popupBasicSubtotalValue" class="sub-description">0 €</span>
+                        </div>
+                        <div class="subtotal">
+                            <div class="qty">
+                                <span id="popupSeniorSubtotal" class="tickets-qty">0</span>
+                                <span id="seniorPrice2" class="sub-description">Senior (10 €)</span>
+                            </div>
+                            <span id="popupSeniorSubtotalValue" class="sub-description">0 €</span>
+                        </div>
+
+                        <div class="total-section">
+                            <span>Total:</span>
+                            <span><span id="popupTotalValue">0</span> €</span>
+                        </div>
+
+                        <div class="cards">
+                            <img class="card-front" src="assets/card-front.png" alt="card front">
+                            <img class="card-back" src="assets/card-back.png" alt="card back">
                         </div>
                         
-                    </form>
+                        <button>Book</button>
+                    </div>
                 </div>
-
-                <!-- Right Section -->
-                <div class="right-section">
-                    <div>
-                        <div class="summary">
-                            <h4>Overview</h4>
-                            <span class="subheader">Tour to Louvre</span>
-                            <span class="event-date description">––</span>
-                            <span class="event-time description">––</span>
-                            <span class="event-type description">Permanent exibition</span>
-                        </div>
-                        <img src="assets/tickets_image.png" alt="tickets image">
-                    </div>
-                    <div class="subtotal">
-                        <div class="qty">
-                            <span id="popupBasicSubtotal" class="tickets-qty">0</span>
-                            <span id="basicPrice2" class="sub-description">Basic (20 €)</span>
-                        </div>
-                        <span id="popupBasicSubtotalValue" class="sub-description">0 €</span>
-                    </div>
-                    <div class="subtotal">
-                        <div class="qty">
-                            <span id="popupSeniorSubtotal" class="tickets-qty">0</span>
-                            <span id="seniorPrice2" class="sub-description">Senior (10 €)</span>
-                        </div>
-                        <span id="popupSeniorSubtotalValue" class="sub-description">0 €</span>
-                    </div>
-
-                    <div class="total-section">
-                        <span>Total:</span>
-                        <span><span id="popupTotalValue">0</span> €</span>
-                    </div>
-
-                    <div class="cards">
-                        <img class="card-front" src="assets/card-front.png" alt="card front">
-                        <img class="card-back" src="assets/card-back.png" alt="card back">
-                    </div>
-                    
-                    <button>Book</button>
-                </div>
-                
             </div>
             <div class="container v-container">
                 <h2>Buy tickets</h2>
@@ -538,6 +538,7 @@
                     </div>
                 </div>
             </div>
+            
         </section>
 
         <div class="paralax"></div>

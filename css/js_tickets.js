@@ -99,6 +99,10 @@ ticketsOverlay.addEventListener("click", function(){
     document.body.classList.remove("no-scroll");
 })
 
+ticketsPopup.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
 
 
 // Here we show-hide error
@@ -203,7 +207,8 @@ function removeError(element){
     let ticketType,
         qtyBasic, qtySenior, 
         eventDate, eventTime,
-        clientName, clientEmail, clientPhone;
+        clientName, clientEmail, clientPhone,
+        total;
 
 
     const radioTtypeSelect = document.querySelectorAll(".radio-container input")
@@ -216,12 +221,93 @@ function removeError(element){
     const popupBasicSubtotal = document.querySelector("#popupBasicSubtotal");
     const popupSeniorSubtotal = document.querySelector("#popupSeniorSubtotal");
     
+    function saveToSession() {
+        sessionStorage.setItem("ticketType", ticketType);
+        sessionStorage.setItem("qtyBasic", qtyBasic);
+        sessionStorage.setItem("qtySenior", qtySenior);
+        sessionStorage.setItem("eventDate", eventDate);
+        sessionStorage.setItem("eventTime", eventTime);
+        sessionStorage.setItem("clientName", clientName);
+        sessionStorage.setItem("clientEmail", clientEmail);
+        sessionStorage.setItem("clientPhone", clientPhone);
+        sessionStorage.setItem("total", total);
+    }
+
+    function loadFromSession() {
+        ticketType = Number(sessionStorage.getItem("ticketType")) || 20;
+        qtyBasic = Number(sessionStorage.getItem("qtyBasic")) || 0;
+        qtySenior = Number(sessionStorage.getItem("qtySenior")) || 0;
+        eventDate = sessionStorage.getItem("eventDate") || "";
+        eventTime = sessionStorage.getItem("eventTime") || "";
+        clientName = sessionStorage.getItem("clientName") || "";
+        clientEmail = sessionStorage.getItem("clientEmail") || "";
+        clientPhone = sessionStorage.getItem("clientPhone") || "";
+
+        const popupTtypeDiaplayField = document.querySelector(".right-section .event-type");
+        const popupTtypeInput = document.querySelector("#popup-ttype-input");
+        const popupTtypeDisplay = document.querySelector("#popup-ttype-display");
+
+        // Для восстановления radio по ticketType ищем radio с data-price == ticketType
+        const radioToSelect = Array.from(document.querySelectorAll(".radio-container input")).find(
+            radio => Number(radio.dataset.price) === ticketType
+        );
+
+        if (radioToSelect) {
+            radioToSelect.checked = true;
+            popupTtypeInput.value = radioToSelect.value;
+            popupTtypeInput.dataset.price = radioToSelect.dataset.price;
+            popupTtypeDisplay.textContent = radioToSelect.value;
+            popupTtypeDiaplayField.textContent = radioToSelect.value;
+        }
+
+        const basicQtyInput = document.querySelector("#adultsInput");
+        const seniorQtyInput = document.querySelector("#seniors");
+        basicQtyInput.value = qtyBasic;
+        seniorQtyInput.value = qtySenior;
+
+        const tBasicInput = document.querySelector("#tBasic");
+        const tSeniorsInput = document.querySelector("#tSeniors");
+        tBasicInput.value = qtyBasic;
+        tSeniorsInput.value = qtySenior;
+
+        const popupBasicSubtotal = document.querySelector("#popupBasicSubtotal");
+        const popupSeniorSubtotal = document.querySelector("#popupSeniorSubtotal");
+        popupBasicSubtotal.textContent = qtyBasic;
+        popupSeniorSubtotal.textContent = qtySenior;
+
+        const dateInput = document.querySelector("#input-date");
+        const timeInput = document.querySelector("#input-time");
+        const dateDisplalyField = document.querySelector(".right-section .event-date");
+        const timeDisplalyField = document.querySelector(".right-section .event-time");
+
+        dateInput.value = eventDate;
+        dateDisplalyField.innerText = eventDate ? formatDate(eventDate) : "––";
+
+        timeInput.value = eventTime;
+        timeDisplalyField.innerText = eventTime || "––";
+
+        const selectedTime = document.querySelector("#selected-time");
+        if (selectedTime) {
+            selectedTime.textContent = eventTime || "Time";
+        }
+
+        const nameInput = document.querySelector("#input-name");
+        const emailInput = document.querySelector("#input-email");
+        const phoneInput = document.querySelector("#input-phone");
+
+        nameInput.value = clientName;
+        emailInput.value = clientEmail;
+        phoneInput.value = clientPhone;
+        priceCalculation();
+    }
+    loadFromSession();
+
+    // ticketType = 20;
+    // qtyBasic = 0;
+    // qtySenior = 0;
+    // total = 0;
 
 
-    ticketType = 20;
-    qtyBasic = 0;
-    qtySenior = 0;
-    total = 0;
 
     radioTtypeSelect.forEach((each) => {
         
@@ -233,6 +319,7 @@ function removeError(element){
             popupTtypeDiaplayField.textContent = each.value;
 
             priceCalculation()
+            saveToSession();
         })
         
     })
@@ -243,7 +330,8 @@ function removeError(element){
         const popupBasicQty = document.querySelector("#tBasic");
         popupBasicQty.value = this.value;
         popupBasicSubtotal.textContent = this.value;
-        priceCalculation()
+        priceCalculation();
+        saveToSession();
     })
     
     seniorQtyInput.addEventListener("input", function(){
@@ -252,31 +340,37 @@ function removeError(element){
         const popupSeniorsQty = document.querySelector("#tSeniors");
         popupSeniorsQty.value = this.value;
         popupSeniorSubtotal.textContent = this.value;
-        priceCalculation()
+        priceCalculation();
+        saveToSession();
     })
 
     document.querySelector("#input-date").addEventListener("input", function(){
         const dateDisplalyField = document.querySelector(".right-section .event-date");
         eventDate = this.value;
         dateDisplalyField.innerText = formatDate(this.value);
+        saveToSession();
     })
 
     document.querySelector("#input-time").addEventListener("input", function(){
         const timeDisplalyField = document.querySelector(".right-section .event-time");
         eventTime = this.value;
         timeDisplalyField.innerText = this.value;
+        saveToSession();
     })
 
     document.querySelector("#input-name").addEventListener("input", function(){
         clientName = this.value;
+        saveToSession();
     })
 
     document.querySelector("#input-email").addEventListener("input", function(){
         clientEmail = this.value;
+        saveToSession();
     })
 
     document.querySelector("#input-phone").addEventListener("input", function(){
         clientPhone = this.value;
+        saveToSession();
     })
 
     popupTtypeInput.addEventListener("input", function(){
@@ -288,6 +382,7 @@ function removeError(element){
             radioToSelect.checked = true;
         }
         priceCalculation()
+        saveToSession();
     })
     
     document.querySelector("#tBasic").addEventListener("input", function(){
@@ -295,6 +390,7 @@ function removeError(element){
         popupBasicSubtotal.textContent = this.value;
         basicQtyInput.value = this.value;
         priceCalculation()
+        saveToSession();
     })
     
     document.querySelector("#tSeniors").addEventListener("input", function(){
@@ -302,6 +398,7 @@ function removeError(element){
         popupSeniorSubtotal.textContent = this.value;
         seniorQtyInput.value = this.value;
         priceCalculation()
+        saveToSession();
     })
 
     
@@ -329,6 +426,8 @@ function removeError(element){
         popupSeniorSubtotalValue.textContent = `${totalSeniors} €`;
         totalValue.textContent = total;
         popupTotalValue.textContent = total;
+
+        saveToSession();
     }
 
 

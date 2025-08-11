@@ -177,18 +177,21 @@ function removeError(element){
     
     phoneField.addEventListener("input", () => {
         const value = phoneField.value.trim();
-        const groups = value.split(/[- ]/);
+        const groups = value.split(/[- ]+/); // разделение по пробелам/дефисам
         const allDigits = groups.join('');
-        const isAllDigitsOnly = /^\d+$/.test(allDigits);
-        const validGroupLengths = groups.every((g) => {
-            return g.length === 2 || g.length === 3
-        });
+        const isAllDigitsOnly = /^\d*$/.test(allDigits);
+
+        // Если есть разделители, каждая группа — строго 2 или 3 цифры
+        const hasSeparators = /[- ]/.test(value);
+        const validGroupLengths = hasSeparators
+            ? groups.every(g => /^\d{2,3}$/.test(g))
+            : true;
 
         if (!isAllDigitsOnly) {
             validationError(phoneField, "Only digits, '-' or spaces");
         } else if (allDigits.length > 10) {
-            validationError(phoneField, "10 digitts max");
-        } else if (!validGroupLengths && groups.length > 1) {
+            validationError(phoneField, "10 digits max");
+        } else if (!validGroupLengths) {
             validationError(phoneField, "Groups should be 2 or 3 digits");
         } else {
             removeError(phoneField);

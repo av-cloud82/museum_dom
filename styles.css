@@ -1190,12 +1190,11 @@ section {
     left: 50%;
     transform: translateX(-100%);
     /* max-height: 90vh; */
-    
     width: 100%;
     max-width: 1440px;
     padding: 90px 0;
     background: #FFF;
-    z-index: 100;
+    /* z-index: 100; */
     opacity: 0;
     transition: transform 0.8s ease-out, opacity 0.3s ease;
 }
@@ -1212,7 +1211,7 @@ section {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    z-index: 100;
+    z-index: 120;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
